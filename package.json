@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "npm run install && npm run seed && npm run start",
+    "setup-schema": "psql -U postgres -d friends_db -f ./server/db/schema.sql",
+    "test": "npm run install && npm run setup-schema && npm run seed && npm run start",
     "start": "npm run client:build && npm run server",
     "start:dev": "concurrently \"npm run server:dev\" \"wait-on tcp:3001 && npm run client:dev\"",
     "server": "cd server && npm start",
