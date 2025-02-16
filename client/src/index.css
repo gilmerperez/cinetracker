@@ -17,6 +17,70 @@
 /**
  * Remove the margin in all browsers.
  */
+
+
+:root {
+  --background-color: #ffffff;
+  --text-color: #1a1a1a;
+  --link-color: #1b89bc;
+  --link-hover-color: #065b83;
+
+  --btn-bg: #aeaeae;
+  --btn-color: #1a1a1a;
+  --btn-hover-bg: #cecece;
+
+  --btn-primary-bg: #2d3e50;
+  --btn-primary-color: #d9e9e8;
+  --btn-primary-hover-bg: #57779a;
+
+  --btn-danger-bg: #e64c66;
+  --btn-danger-color: #ffffff;
+  --btn-danger-hover-bg: #ee8294;
+
+  --btn-info-bg: #1bbc9b;
+  --btn-info-color: #ffffff;
+  --btn-info-hover-bg: #31e1bd;
+
+  --btn-light-bg: #d9e9e8;
+  --btn-light-color: #1a1a1a;
+  --btn-light-hover-bg: #84b8b4;
+
+  --btn-dark-bg: #1a1a1a;
+  --btn-dark-color: #d9e9e8;
+  --btn-dark-hover-bg: #5f5f5f;
+
+  --btn-white-bg: #ffffff;
+  --btn-white-color: #1a1a1a;
+  --btn-white-hover-bg: #cccccc;
+
+  --btn-black-bg: #000000;
+  --btn-black-color: #ffffff;
+  --btn-black-hover-bg: #666666;
+
+  --btn-link-bg: #1b89bc;
+  --btn-link-color: #ffffff;
+  --btn-link-hover-bg: #31a9e1;
+}
+
+.page-container.dark {
+  --background-color: #222222;
+  --text-color: #f1f1f1;
+  
+  --link-color: #5aa9f6;
+  --link-hover-color: #9acaff;
+
+  --btn-bg: #444444;
+  --btn-color: #f1f1f1;
+  --btn-hover-bg: #666666;
+
+  --btn-primary-bg: #333333;
+  --btn-primary-color: #f1f1f1;
+  --btn-primary-hover-bg: #555555;
+
+  /* Adjust additional variables if needed */
+}
+
+html,
 body {
   margin: 0;
 }
