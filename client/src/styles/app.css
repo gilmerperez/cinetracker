@@ -1,0 +1,32 @@
+/* Define default (light) theme variables */
+:root {
+    --background-color: #F0FFFF;
+    --text-color: #000000;
+}
+
+/* Override variables when the dark theme is active */
+.page-container.dark {
+    --background-color: #454A4A;
+    --text-color: #E1E1C1;
+}
+
+/* Global styling that applies the theme variables */
+html, body {
+    height: 100%;
+    margin: 0;
+    background-color: var(--background-color);
+    color: var(--text-color);
+}
+
+.page-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Full viewport height */
+    background-color: var(--background-color);
+    color: var(--text-color);
+}
+
+.flex-grow-1 {
+    flex: 1; /* This makes the main area expand to fill the space */
+}
+  
