@@ -32,23 +32,23 @@ const Header = () => {
             <ul className="nav nav-pills custom-nav">
                 {/* Link to Movies Page */}
                 <li className="nav-item">
-                    <Link to="/movies" className={currentPage === "/movies" ? "nav-link active" : "nav-link"}>Movies</Link>
+                    <Link to="/Movies" className={currentPage === "/Movies" ? "nav-link active" : "nav-link"}>Movies</Link>
                 </li>
                 {/* Link to TV Shows Page */}
                 <li className="nav-item">
-                    <Link to="/tvshows" className={currentPage === "/tvshows" ? "nav-link active" : "nav-link"}>TV Shows</Link>
+                    <Link to="/TVShows" className={currentPage === "/TVShows" ? "nav-link active" : "nav-link"}>TV Shows</Link>
                 </li>
                 {/* Link to Library Page */}
                 <li className="nav-item">
-                    <Link to="/library" className={currentPage === "/library" ? "nav-link active" : "nav-link"}>Library</Link>
+                    <Link to="/Library" className={currentPage === "/Library" ? "nav-link active" : "nav-link"}>Library</Link>
                 </li>
                 {/* Link to Contact Us */}
                 <li className="nav-item">
-                    <Link to="/contact" className={currentPage === "/contact" ? "nav-link active" : "nav-link"}>Contact Us</Link>
+                    <Link to="/Contact" className={currentPage === "/Contact" ? "nav-link active" : "nav-link"}>Contact Us</Link>
                 </li>
                 {/* Login/Logout Button */}
                 <li className="nav-item">
-                    {!loginCheck ? (<Link to='/login' className="nav-link">Login</Link>)
+                    {!loginCheck ? (<Link to='/Login' className="nav-link">Login</Link>)
                     : (<button className="nav-link btn-link" onClick={() => {auth.logout();}}>Logout</button>)}
                 </li>
             </ul>
