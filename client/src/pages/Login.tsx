@@ -1,17 +1,17 @@
 import { useState, FormEvent, ChangeEvent } from "react";
-
-import Auth from '../utils/auth'; // Import the Auth utility for managing authentication state
-import { login } from "../api/authAPI";  // Import the login function from the API
-import { UserLogin } from "../interfaces/UserLogin";  // Import UserLogin interface
+import Auth from "../utils/auth";
+import { login } from "../api/authAPI";
+import { UserLogin } from "../interfaces/UserLogin";
+import LightThemeLogo from "../assets/LightThemeLogo.png";
+import "../styles/Login.css";  // Adjust path if needed
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const Login = () => {
-  // State to manage the login form data
   const [loginData, setLoginData] = useState<UserLogin>({
     username: "",
     password: "",
   });
 
-  // Handle changes in the input fields
   const handleChange = (
     e: ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) => {
@@ -22,7 +22,6 @@ const Login = () => {
     });
   };
 
-  // Handle form submission for login
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     try {
@@ -34,38 +33,44 @@ const Login = () => {
   };
 
   return (
-    <div className="form-container">
-      <form className="form login-form" onSubmit={handleSubmit}>
-        <h1>Login</h1>
-        {/* Username input field */}
-        <div className="form-group">
-          <label>Username</label>
+    <div className="login-container">
+      <img
+        className="mb-4"
+        src={LightThemeLogo}
+        alt="Light theme logo"
+        width="172"
+        height="172"
+      />
+
+      <form onSubmit={handleSubmit}>
+        <div className="form-floating">
           <input
-            className="form-input"
             type="text"
             name="username"
-            value={loginData.username || ""}
+            className="form-control"
+            id="floatingInput"
+            placeholder="username"
             onChange={handleChange}
           />
+          <label htmlFor="floatingInput">Username</label>
         </div>
-        {/* Password input field */}
-        <div className="form-group">
-          <label>Password</label>
+        <div className="form-floating">
           <input
-            className="form-input"
             type="password"
             name="password"
-            value={loginData.password || ""}
+            className="form-control"
+            id="floatingPassword"
+            placeholder="Password"
             onChange={handleChange}
           />
+          <label htmlFor="floatingPassword">Password</label>
         </div>
-        {/* Submit button for the login form */}
-        <div className="form-group">
-          <button className="btn btn-primary" type="submit">
-            Login
-          </button>
-        </div>
+
+        <button className="btn btn-primary w-100 py-2" type="submit">
+          Sign in
+        </button>
       </form>
+      <p className="mt-5 mb-3 text-body-secondary">© 2017–2024</p>
     </div>
   );
 };
