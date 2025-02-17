@@ -19,7 +19,7 @@ const Footer: React.FC<FooterProps> = ({ toggleTheme, theme }) => {
                     </svg>
                 </a>
                 <span className="mb-3 mb-md-0 text-body-secondary copyright">
-                    © 2025 Company, Inc
+                    © 2025 CineTracker, Inc
                 </span>
             </div>
 
