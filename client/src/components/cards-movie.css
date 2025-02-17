@@ -50,3 +50,6 @@ button {
     color: orange !important;
     padding: 0px !important;
 }
+.btn {
+    border-radius: 50%;
+}
