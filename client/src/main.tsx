@@ -4,13 +4,20 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
 import App from './App.tsx';
 import ErrorPage from './pages/ErrorPage.tsx';
-import Home from './pages/Home.tsx';
-import Movies from './pages/movies.tsx';
-import TVShows from './pages/tvshows.tsx';
-import Library from './pages/library.tsx';
-import Contact from './pages/contact.tsx';
 import Login from './pages/Login.tsx';
 import SignUp from './pages/SignUp.tsx';
+import Movies from './pages/Movies.tsx';
+import TVShows from './pages/TVShows.tsx';
+import Library from './pages/Library.tsx';
+import Contact from './pages/Contact.tsx';
+
+// Protected Route Component
+import Auth from './utils/auth.ts';
+import { Navigate } from 'react-router-dom';
+const ProtectedRoute = ({ element }: { element: JSX.Element }) => {
+  return Auth.loggedIn() ? element : <Navigate to="/Movies" replace />;
+};
+export default ProtectedRoute;
 
 const router = createBrowserRouter([
   {
@@ -20,27 +27,23 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <Home />
-      }, 
+        element: <Login />
+      },
       {
         path: '/Movies',
-        element: <Movies />
-      }, 
+        element: <ProtectedRoute element={<Movies />} />,
+      },
       {
         path: '/TVShows',
-        element: <TVShows />
+        element: <ProtectedRoute element={<TVShows />} />,
       },
       {
         path: '/Library',
-        element: <Library />
+        element: <ProtectedRoute element={<Library />} />,
       },
       {
         path: '/Contact',
-        element: <Contact />
-      },
-      {
-        path: '/Login',
-        element: <Login />
+        element: <ProtectedRoute element={<Contact />} />,
       },
       {
         path: '/Signup',

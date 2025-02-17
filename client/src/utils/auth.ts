@@ -1,11 +1,10 @@
-// Importing specific types and functions from the 'jwt-decode' library
 import { type JwtPayload, jwtDecode } from 'jwt-decode';
 import type { UserData } from '../interfaces/UserData';
 
 class AuthService {
   login(idToken: string) {
     localStorage.setItem('id_token', idToken);
-    window.location.assign('/');
+    window.location.assign('/Movies');
   }
 
   getToken(): string {
@@ -20,6 +19,7 @@ class AuthService {
 
   loggedIn() {
     const token = this.getToken();
+    console.log("Token from localStorage:", token); // Debug log
     return !!token && !this.isTokenExpired(token);
   }
 

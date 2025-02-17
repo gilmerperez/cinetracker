@@ -3,7 +3,7 @@ import Auth from "../utils/auth";
 import { login } from "../api/authAPI";
 import { UserLogin } from "../interfaces/UserLogin";
 import LightThemeLogo from "../assets/LightThemeLogo.png";
-import "../styles/Login.css";  // Adjust path if needed
+import "../styles/Login.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const Login = () => {
