@@ -1,22 +1,60 @@
+import '../styles/header.css';
 
+// Import needed for link navigation functionality
+import { useLocation } from "react-router-dom";
+
+// Imports needed for Login/Logout button
+import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import auth from '../utils/auth';
 
 const Header = () => {
+    // useState/useEffect for Login/Logout button
+    const [loginCheck, setLoginCheck] = useState(false);
+    const checkLogin = () => {
+      if (auth.loggedIn()) {
+        setLoginCheck(true);
+      }
+    };
+    useEffect(() => {
+      checkLogin();
+    }, [loginCheck]);
+
+    const currentPage = useLocation().pathname;
+
     return (
-        <header className="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
+        <header className="d-flex flex-wrap justify-content-center py-3 mb-4">
             <a href="/" className="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
                 <svg className="bi me-2" width="40" height="32"><use xlinkHref="#bootstrap"></use></svg>
-                <span className="fs-4">Simple header</span>
+                <span className="fs-4 logo">CineTracker</span>
             </a>
 
-            <ul className="nav nav-pills">
-                <li className="nav-item"><a href="#" className="nav-link active" aria-current="page">Home</a></li>
-                <li className="nav-item"><a href="#" className="nav-link">Features</a></li>
-                <li className="nav-item"><a href="#" className="nav-link">Pricing</a></li>
-                <li className="nav-item"><a href="#" className="nav-link">FAQs</a></li>
-                <li className="nav-item"><a href="#" className="nav-link">About</a></li>
+            <ul className="nav nav-pills custom-nav">
+                {/* Link to Movies Page */}
+                <li className="nav-item">
+                    <Link to="/Movies" className={currentPage === "/Movies" ? "nav-link active" : "nav-link"}>Movies</Link>
+                </li>
+                {/* Link to TV Shows Page */}
+                <li className="nav-item">
+                    <Link to="/TVShows" className={currentPage === "/TVShows" ? "nav-link active" : "nav-link"}>TV Shows</Link>
+                </li>
+                {/* Link to Library Page */}
+                <li className="nav-item">
+                    <Link to="/Library" className={currentPage === "/Library" ? "nav-link active" : "nav-link"}>Library</Link>
+                </li>
+                {/* Link to Contact Us */}
+                <li className="nav-item">
+                    <Link to="/Contact" className={currentPage === "/Contact" ? "nav-link active" : "nav-link"}>Contact Us</Link>
+                </li>
+                {/* Login/Logout Button */}
+                <li className="nav-item">
+                    {!loginCheck ? (<Link to='/Login' className="nav-link">Login</Link>)
+                    : (<button className="nav-link btn-link" onClick={() => {auth.logout();}}>Logout</button>)}
+                </li>
             </ul>
         </header>
-    )
-}
+    );
+};
 
 export default Header;
+

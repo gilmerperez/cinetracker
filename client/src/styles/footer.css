@@ -1,0 +1,65 @@
+:root {
+    /* Light Theme Variables */
+    --text-color: #F0FFFF;
+    --footer-bg: #F0FFFF;
+    --footer-icon-bg: #ff6f00;
+    --footer-icon-color: #000;
+    --footer-icon-hover: #e65c00;
+
+    /* Dark Theme Variables */
+    --dark-text-color: #E1E1C1;
+    --dark-footer-bg: #454A4A;
+    --dark-footer-icon-bg: #E1E1C1;
+    --dark-footer-icon-color: #488567;
+}
+
+/* Override footer variables when the dark theme is active */
+.page-container.dark {
+    --text-color: var(--dark-text-color);
+    --footer-bg: var(--dark-footer-bg);
+    --footer-icon-bg: var(--dark-footer-icon-bg);
+    --footer-icon-color: var(--dark-footer-icon-color);
+    --footer-icon-hover: var(--dark-footer-icon-hover);
+}
+
+/* Footer styling using CSS variables */
+footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: var(--footer-bg);
+    padding: 20px;
+    text-align: center;
+    z-index: 1000;
+    margin: 0;
+}
+
+.copyright {
+    color: var(--text-color) !important;
+}
+
+/* Target the anchor element inside footer icon list items */
+.footer-icon-list li a {
+    background-color: var(--footer-icon-bg);
+    border-radius: 4px;
+    padding: 10px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s;
+}
+
+/* Increase the SVG icon size and set its colors utilizing variables */
+.footer-icon-list li a svg {
+    width: 24px;
+    height: 24px;
+    fill: currentColor;
+    color: var(--footer-icon-color);
+}
+
+
+/* Adjust spacing between list items if needed */
+.footer-icon-list li {
+    margin: 0 15px;
+}
