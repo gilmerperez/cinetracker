@@ -1,10 +1,12 @@
 import { useState, FormEvent, ChangeEvent } from "react";
-
-import Auth from '../utils/auth'; // Import the Auth utility for managing authentication state
-import { login } from "../api/authAPI";  // Import the login function from the API
-import { UserLogin } from "../interfaces/UserLogin";  // Import UserLogin interface
+import { useNavigate } from "react-router-dom";
+import Auth from "../utils/auth";
+import { login } from "../api/authAPI";
+import { UserLogin } from "../interfaces/UserLogin";
 
 const Login = () => {
+  const navigate = useNavigate();
+
   // State to manage the login form data
   const [loginData, setLoginData] = useState<UserLogin>({
     username: "",
@@ -27,7 +29,9 @@ const Login = () => {
     e.preventDefault();
     try {
       const data = await login(loginData);
-      Auth.login(data.token);
+      console.log("Login successful, token received:", data.token); // Debug log
+      Auth.login(data.token); // Set token in localStorage
+      navigate("/Movies");
     } catch (err) {
       console.error("Failed to login", err);
     }
