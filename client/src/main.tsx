@@ -2,10 +2,9 @@ import './index.css';
 import ReactDOM from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
-import Home from './pages/Home.tsx'; // We need to replace Home with one of these pages, /Movies?
-
 import App from './App.tsx';
 import ErrorPage from './pages/ErrorPage.tsx';
+import Home from './pages/Home.tsx';
 import Movies from './pages/movies.tsx';
 import TVShows from './pages/tvshows.tsx';
 import Library from './pages/library.tsx';
