@@ -1,24 +1,20 @@
 import '../styles/header.css';
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Auth from '../utils/auth';
 
 const Header = () => {
     const [loginCheck, setLoginCheck] = useState(false);
-    const navigate = useNavigate();
-
     useEffect(() => {
       setLoginCheck(Auth.loggedIn());
     }, []);
 
-    const handleLogout = () => {
-      Auth.logout();
-      setLoginCheck(false);
-      navigate("/");
-    };
-
     const currentPage = useLocation().pathname;
+
+    if (!loginCheck) {
+        return null;
+    }
 
     return (
         <header className="d-flex flex-wrap justify-content-center py-3 mb-4">
@@ -27,30 +23,24 @@ const Header = () => {
                 <span className="fs-4 logo">CineTracker</span>
             </a>
 
-            {loginCheck && (
-                <ul className="nav nav-pills custom-nav">
-                    {/* Link to Movies Page */}
-                    <li className="nav-item">
-                        <Link to="/Movies" className={currentPage === "/Movies" ? "nav-link active" : "nav-link"}>Movies</Link>
-                    </li>
-                    {/* Link to TV Shows Page */}
-                    <li className="nav-item">
-                        <Link to="/TVShows" className={currentPage === "/TVShows" ? "nav-link active" : "nav-link"}>TV Shows</Link>
-                    </li>
-                    {/* Link to Library Page */}
-                    <li className="nav-item">
-                        <Link to="/Library" className={currentPage === "/Library" ? "nav-link active" : "nav-link"}>Library</Link>
-                    </li>
-                    {/* Link to Contact Us Page */}
-                    <li className="nav-item">
-                        <Link to="/Contact" className={currentPage === "/Contact" ? "nav-link active" : "nav-link"}>Contact Us</Link>
-                    </li>
-                    {/* Logout Button */}
-                    <li className="nav-item">
-                        <button className="nav-link btn-link" onClick={handleLogout}>Logout</button>
-                    </li>
-                </ul>
-            )}
+            <ul className="nav nav-pills custom-nav">
+                {/* Link to Movies Page */}
+                <li className="nav-item">
+                    <Link to="/Movies" className={currentPage === "/Movies" ? "nav-link active" : "nav-link"}>Movies</Link>
+                </li>
+                {/* Link to TV Shows Page */}
+                <li className="nav-item">
+                    <Link to="/TVShows" className={currentPage === "/TVShows" ? "nav-link active" : "nav-link"}>TV Shows</Link>
+                </li>
+                {/* Link to Library Page */}
+                <li className="nav-item">
+                    <Link to="/Library" className={currentPage === "/Library" ? "nav-link active" : "nav-link"}>Library</Link>
+                </li>
+                {/* Link to Contact Us Page */}
+                <li className="nav-item">
+                    <Link to="/Contact" className={currentPage === "/Contact" ? "nav-link active" : "nav-link"}>Contact Us</Link>
+                </li>
+            </ul>
         </header>
     );
 };
