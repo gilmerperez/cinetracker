@@ -28,7 +28,7 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <Login />
+        element: Auth.loggedIn() ? <Navigate to="/Movies" replace /> : <Login />,
       },
       {
         path: '/Movies',
@@ -54,9 +54,9 @@ const router = createBrowserRouter([
         path: '/Details',
         element: <ProtectedRoute element={<Details />} />,
       },
-    ]
-  }
-])
+    ],
+  },
+]);
 
 const rootElement = document.getElementById('root');
 if (rootElement) {
