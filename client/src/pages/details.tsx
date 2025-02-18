@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import '../styles/details.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import '/src/styles/details.css';
+
 
 const Jumbotron: React.FC = () => {
   const [hasInteracted, setHasInteracted] = useState(false);
@@ -81,7 +82,7 @@ const Jumbotron: React.FC = () => {
   </div>
 
   <div className="col-md-6">
-  <div className="h-100 p-5 bg-body-tertiary border rounded-3">
+  <div className="h-100 p-5 bg-body-tertiary border rounded-3 review-container">
     <h2>Reviews</h2>
     <p style={{ fontStyle: 'italic' }}>
     "I’m a big fan of Superman, and I’ve been waiting for this movie for so long. After just watching the trailer, I can already tell that this movie is going to be a hit. I’m so excited to watch it!"
@@ -91,7 +92,7 @@ const Jumbotron: React.FC = () => {
     {/* Image Placeholder for Logo */}
     <div className="text-center mb-4">
       <img 
-        src="/src/assets/Cine Track Black Logo.png" 
+        src="../assets/DarkThemeLogo.png"
         alt="Logo Placeholder" 
         style={{ width: '150px', height: '150px', objectFit: 'contain' }} 
       />
