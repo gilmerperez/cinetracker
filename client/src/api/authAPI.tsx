@@ -15,7 +15,7 @@ const login = async (userInfo: UserLogin) => {
     // Throw error if response status is not valid
     if (!response.ok) {
       const errorData = await response.json(); // Parse error response as JSON
-      throw new Error(`Error: ${errorData.message}`); // Throw a detailed error message
+      throw new Error(errorData.message || "Invalid username or password"); // Throw a detailed error message
     }
 
     // Parse the response body as JSON
@@ -23,7 +23,8 @@ const login = async (userInfo: UserLogin) => {
     return data; // Return the data received from the server
   } catch (err) {
     console.log("Error from user login: ", err);
-    return Promise.reject("Could not fetch user info"); // Return a rejected promise with an error message
+    // Check if the error has a message, otherwise use a default
+    return Promise.reject(err instanceof Error ? err.message : "Could not fetch user info");
   }
 }
 
