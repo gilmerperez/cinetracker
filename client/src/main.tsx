@@ -6,11 +6,11 @@ import App from './App.tsx';
 import ErrorPage from './pages/ErrorPage.tsx';
 import Login from './pages/Login.tsx';
 import SignUp from './pages/SignUp.tsx';
-import Movies from './pages/movies.tsx';
-import TVShows from './pages/tvshows.tsx';
-import Library from './pages/library.tsx';
+import Movies from './pages/Movies.tsx';
+import TVShows from './pages/TVShows.tsx';
+import Library from './pages/Library.tsx';
 import Contact from './pages/contact.tsx';
-import Details from './pages/details.tsx';
+import Details from './pages/Details.tsx';
 
 // Protected Route Component
 import Auth from './utils/auth.ts';
@@ -48,10 +48,10 @@ const router = createBrowserRouter([
       },
       {
         path: '/Signup',
-        element: <SignUp />
+        element: <ProtectedRoute element={<SignUp />} />,
       },
       {
-        path: '/details',
+        path: '/Details',
         element: <ProtectedRoute element={<Details />} />,
       },
     ]
