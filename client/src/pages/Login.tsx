@@ -72,7 +72,7 @@ const Login = () => {
         </button>
       </form>
       <p className="mt-5 mb-3 text-body-secondary">© 2025 CineTracker, Inc</p>
-
+      <hr />
       <h3 className="container text-center mt-5">Don't have an account?</h3>
       <SignUp />
     </div>
