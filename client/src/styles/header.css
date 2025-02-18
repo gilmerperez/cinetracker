@@ -49,7 +49,7 @@ header {
 }
 
 .custom-nav .nav-link.active {
-  background-color: var(--nav-link-active-bg);
+  background-color: var(--nav-link-active-bg) !important;
   color: var(--nav-link-active-color);
 }
 

@@ -1,5 +1,14 @@
+import Dropdown from "../components/dropdown";
+import CardSection from "../components/cards";
+
+
 const Movies = () => {
-  return <h1>Movies</h1>;
+  return (
+    <div>
+      <Dropdown />
+      <CardSection />
+    </div>
+  );
 };
 
 export default Movies;

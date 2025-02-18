@@ -24,7 +24,7 @@ const Footer: React.FC<FooterProps> = ({ toggleTheme, theme }) => {
   };
 
   return (
-    <footer className="d-flex flex-wrap justify-content-between align-items-center py-3 my-4">
+    <footer className="d-flex flex-wrap justify-content-between align-items-center py-3">
       {loginCheck && (
         <>
           <div className="col-md-4 d-flex align-items-center">
