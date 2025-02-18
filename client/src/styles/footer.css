@@ -29,10 +29,11 @@ footer {
     left: 0;
     width: 100%;
     background-color: var(--footer-bg);
-    padding: 20px;
+    padding: 5px;
     text-align: center;
-    z-index: 1000;
+    /* z-index: 10; */
     margin: 0;
+    /* margin-top: 100px; */
 }
 
 .copyright {

@@ -1,4 +1,4 @@
-Background Of the Page
+/* Background Of the Page */
 html, body {
   background-color: #F0FFFF;
   margin: 0;
@@ -56,6 +56,11 @@ body {
   border-color: #FF6F00; 
 }
 
+.review-container {
+  padding: 10px;
+}
+
+
 /* .review-container {
   background-color: #343a40; 
   color: white; 
@@ -72,5 +77,15 @@ body {
   font-style: italic;
   margin-bottom: 20px;
 }
-
-
+.pt-5 {
+  padding-top: 0rem !important;
+}
+.py-4 {
+  padding-top: 0rem !important;
+}
+.mb-4 {
+  margin-top: 0rem !important;
+}
+.p-5 {
+  padding: 10px !important;
+}
