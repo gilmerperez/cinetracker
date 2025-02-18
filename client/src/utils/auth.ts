@@ -1,5 +1,4 @@
 import { type JwtPayload, jwtDecode } from 'jwt-decode';
-import type { UserData } from '../interfaces/UserData';
 
 class AuthService {
   login(idToken: string) {
@@ -10,11 +9,6 @@ class AuthService {
   getToken(): string {
     const loggedUser = localStorage.getItem('id_token') || '';
     return loggedUser;
-  }
-
-  getProfile() {
-    // Decode JWT using jwtDecode function, specifying the expected payload type as UserData, getToken() method is called to retrieve JWT, which is then passed to jwtDecode to extract and return its payload
-    return jwtDecode<UserData>(this.getToken());
   }
 
   loggedIn() {
