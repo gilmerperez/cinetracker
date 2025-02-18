@@ -13,6 +13,9 @@ const Login = () => {
     password: "",
   });
 
+  // State for error messages
+  const [errorMsg, setErrorMsg] = useState<string>("");
+
   const handleChange = (
     e: ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) => {
@@ -30,6 +33,7 @@ const Login = () => {
       Auth.login(data.token);
     } catch (err) {
       console.error("Failed to login", err);
+      setErrorMsg(err instanceof Error ? err.message : String(err));
     }
   };
 
@@ -71,6 +75,12 @@ const Login = () => {
           Sign in
         </button>
       </form>
+      {/* Conditionally render error message */}
+      {errorMsg && (
+        <div className="alert alert-danger mt-3" role="alert">
+          {errorMsg}
+        </div>
+      )}
       <p className="mt-5 mb-3 text-body-secondary">© 2025 CineTracker, Inc</p>
       <hr />
       <h3 className="container text-center mt-5">Don't have an account?</h3>
