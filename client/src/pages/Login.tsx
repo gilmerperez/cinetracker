@@ -5,6 +5,7 @@ import { UserLogin } from "../interfaces/UserLogin";
 import LightThemeLogo from "../assets/LightThemeLogo.png";
 import "../styles/Login.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import SignUp from "./SignUp";
 
 const Login = () => {
   const [loginData, setLoginData] = useState<UserLogin>({
@@ -81,8 +82,9 @@ const Login = () => {
         </div>
       )}
       <p className="mt-5 mb-3 text-body-secondary">© 2025 CineTracker, Inc</p>
-
+      <hr />
       <h3 className="container text-center mt-5">Don't have an account?</h3>
+      <SignUp />
     </div>
   );
 };
