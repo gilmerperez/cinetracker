@@ -63,13 +63,16 @@ const Movies = () => {
       <GenreDropdown onGenreChange={handleGenreChange} />
       <div className="container py-5">
         <h1 className="text-center mb-4">Movies</h1>
+        {/* Show Loading icon as API fetches data */}
         {loading && <p className="text-center">Loading...</p>}
+        {/* Set Error message if no data is found */}
         {error && <p className="text-center text-danger">{error}</p>}
         <div className="row row-cols-1 row-cols-md-3 g-4">
+          {/* For each TV Show in API call, map over them and render data in TVShowsCard */}
           {movies.length > 0 ? (
             movies.map((movie: Movie) => <MoviesCard key={movie.imdbID || "N/A"} movie={movie} />)
           ) : (
-            <p className="text-center">No movies found for the selected year or genre.</p>
+            <p className="text-center">No Movies found for the selected year or genre.</p>
           )}
         </div>
       </div>

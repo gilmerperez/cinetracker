@@ -32,16 +32,16 @@ const TVShowsCard: React.FC<TVShowsCardProps> = ({ show }) => {
           style={{ minHeight: "300px" }}
         >
           <div>
-            <strong className="d-inline-block mb-2 text-primary-emphasis">
-              TV Show
-            </strong>
-            <h3 className="mb-0">{show.Title || "N/A"}</h3>
+            <strong className="d-inline-block mb-2 text-primary-emphasis">Movie</strong>
+            <h3 className="mb-0">{show.Title || "No Information Available"}</h3>
             <div className="mb-1 text-body-secondary">
-              {show.Year || "N/A"}
+              {show.Year || "No Information Available"}
             </div>
             <p className="card-text mb-3">
-              <strong>Director:</strong> {show.Director || "N/A"} <br />
-              <strong>Rating:</strong> {show.imdbRating || "N/A"}
+              <strong>Director:</strong>{" "}
+              {show.Director || "No Information Available"} <br />
+              <strong>Rating:</strong>{" "}
+              {show.imdbRating || "No Information Available"}
             </p>
           </div>
 
@@ -54,7 +54,7 @@ const TVShowsCard: React.FC<TVShowsCardProps> = ({ show }) => {
         {/* Poster */}
         <div className="col-auto d-none d-lg-block">
           <img
-            src={show.Poster || "N/A"}
+            src={show.Poster || "https://via.placeholder.com/200x250?text=No+Image"}
             alt={show.Title || "N/A"}
             width="200"
             height="250"

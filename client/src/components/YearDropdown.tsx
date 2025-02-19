@@ -15,7 +15,13 @@ const YearDropdown: React.FC<YearDropdownProps> = ({ onYearChange }) => {
 
   return (
     <div className="dropdown">
-      <button className="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Year</button>
+      <button
+        className="btn btn-secondary dropdown-toggle"
+        type="button"
+        data-bs-toggle="dropdown"
+        aria-expanded="false">
+        Year
+      </button>
       <ul className="dropdown-menu">
         {[
           "2024",

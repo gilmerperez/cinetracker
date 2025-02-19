@@ -18,6 +18,8 @@ const TVShows = () => {
   const [tvShows, setTvShows] = useState<TVShow[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
+  const [selectedYear, setSelectedYear] = useState<string>("");
+  const [selectedGenre, setSelectedGenre] = useState<string>("");
 
   // Define the API URL with your OMDb API key
   const apiKey = import.meta.env.VITE_OMDB_API_KEY;
@@ -27,7 +29,8 @@ const TVShows = () => {
   useEffect(() => {
     const fetchTVShows = async () => {
       try {
-        const response = await fetch(apiUrl);
+        const url = `${apiUrl}${selectedYear ? `&y=${selectedYear}` : ""}${selectedGenre ? `&genre=${selectedGenre}` : ""}`;
+        const response = await fetch(url);
         const data = await response.json();
         if (data.Response === "True") {
           setTvShows(data.Search); // Store TV Show results in state variable
@@ -41,12 +44,22 @@ const TVShows = () => {
       }
     };
     fetchTVShows();
-  }, [apiUrl]); // Empty dependency array makes this run once when the component mounts
+  }, [selectedYear, selectedGenre, apiUrl]); // Empty dependency array makes this run once when the component mounts
+
+  // Handler to update selected year
+  const handleYearChange = (year: string) => {
+    setSelectedYear(year); // Update the selected year in state variable
+  };
+  
+  // Handler to update selected genre
+  const handleGenreChange = (genre: string) => {
+    setSelectedGenre(genre); // Update selected genre in state variable
+  };
 
   return (
     <>
-      <YearDropdown />
-      <GenreDropdown />
+      <YearDropdown onYearChange={handleYearChange} /> 
+      <GenreDropdown onGenreChange={handleGenreChange} />
       <div className="container py-5">
         <h1 className="text-center mb-4">TV Shows</h1>
         {/* Show Loading icon as API fetches data */}
@@ -55,9 +68,11 @@ const TVShows = () => {
         {error && <p className="text-center text-danger">{error}</p>}
         <div className="row row-cols-1 row-cols-md-3 g-4">
           {/* For each TV Show in API call, map over them and render data in TVShowsCard */}
-          {tvShows.map((show: TVShow) => (
-            <TVShowsCard key={show.imdbID || "N/A"} show={show} />
-          ))}
+          {tvShows.length > 0 ? (
+            tvShows.map((show: TVShow) => <TVShowsCard key={show.imdbID || "N/A"} show={show} />)
+          ) : (
+            <p className="text-center">No tv shows found for the selected year or genre.</p>
+          )}
         </div>
       </div>
     </>

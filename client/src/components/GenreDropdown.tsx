@@ -4,10 +4,14 @@ interface GenreDropdownProps {
 }
 
 const GenreDropdown: React.FC<GenreDropdownProps> = ({ onGenreChange }) => {
-  const handleGenreSelect = (event: React.MouseEvent, genre: string) => {
-    event.preventDefault(); // Prevent page reload
+  const setSelectedGenre = (genre: string) => {
     onGenreChange(genre); // Notify parent component about the selected genre
   };
+
+  const handleGenreSelect = (genre: string) => {
+    setSelectedGenre(genre); // Update local state
+    onGenreChange(genre); // Notify parent component about the selected genre
+  }
 
   return (
     <div className="dropdown">
@@ -15,8 +19,7 @@ const GenreDropdown: React.FC<GenreDropdownProps> = ({ onGenreChange }) => {
         className="btn btn-secondary dropdown-toggle"
         type="button"
         data-bs-toggle="dropdown"
-        aria-expanded="false"
-      >
+        aria-expanded="false">
         Genre
       </button>
       <ul className="dropdown-menu">
@@ -31,13 +34,7 @@ const GenreDropdown: React.FC<GenreDropdownProps> = ({ onGenreChange }) => {
           "Sci-Fi",
         ].map((genre) => (
           <li key={genre}>
-            <a
-              className="dropdown-item"
-              href="#"
-              onClick={(e) => handleGenreSelect(e, genre)}
-            >
-              {genre}
-            </a>
+            <a className="dropdown-item" href="#" onClick={() => handleGenreSelect(genre)}>{genre}</a>
           </li>
         ))}
       </ul>
