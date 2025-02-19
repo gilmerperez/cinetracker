@@ -1,7 +1,7 @@
 import React from "react";
 
-// Interface for TVShowsCardProps
-interface TVShowsCardProps {
+// Interface for MovieCardProps
+interface MovieCardProps {
   title?: string;
   director?: string;
   releaseDate?: string;
@@ -9,7 +9,7 @@ interface TVShowsCardProps {
   poster?: string;
 }
 
-const TVShowsCard: React.FC<TVShowsCardProps> = ({
+const MovieCard: React.FC<MovieCardProps> = ({
   title,
   director,
   releaseDate,
@@ -19,16 +19,16 @@ const TVShowsCard: React.FC<TVShowsCardProps> = ({
   return (
     <div className="col-md-6">
       <div className="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
-        {/* TV Show Details */}
+        {/* Movie Details */}
         <div
           className="col p-4 d-flex flex-column justify-content-between"
           style={{ minHeight: "300px" }}
         >
           <div>
             <strong className="d-inline-block mb-2 text-primary-emphasis">
-              TV Show
+              Movie
             </strong>
-            <h3 className="mb-0">{title}</h3>
+            <h3 className="mb-0">{title || "N/A"}</h3>
             <div className="mb-1 text-body-secondary">
               {releaseDate || "N/A"}
             </div>
@@ -58,4 +58,4 @@ const TVShowsCard: React.FC<TVShowsCardProps> = ({
   );
 };
 
-export default TVShowsCard;
+export default MovieCard;
