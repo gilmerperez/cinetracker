@@ -33,7 +33,7 @@ const Movies = () => {
         if (data.Response === "True") {
           setMovies(data.Search); // Store Movie results in state variable
         } else {
-          setError("No TV shows found");
+          setError("No Movies found");
         }
       } catch (error) {
         setError("Error fetching data from OMDb API");
@@ -56,15 +56,8 @@ const Movies = () => {
         {error && <p className="text-center text-danger">{error}</p>}
         <div className="row row-cols-1 row-cols-md-3 g-4">
           {/* For each Movie in API call, map over them and render data in MovieCard */}
-          {movies.map((show: Movie) => (
-            <MovieCard
-              key={show.imdbID  || "N/A"}
-              title={show.Title || "N/A"}
-              director={show.Director || "N/A"}
-              releaseDate={show.Year || "N/A"}
-              rating={show.imdbRating || "N/A"}
-              poster={show.Poster || "N/A"}
-            />
+          {movies.map((movie: Movie) => (
+            <MovieCard key={movie.imdbID || "N/A"} movie={movie} />
           ))}
         </div>
       </div>
