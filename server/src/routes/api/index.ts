@@ -1,8 +1,8 @@
 import { Router } from 'express';
-import { userRouter } from './user-routes.js';
+import { posterRouter } from './poster-routes.js';
 
 const router = Router();
 
-router.use('/users', userRouter);
+router.use('/posters', posterRouter);
 
 export default router;

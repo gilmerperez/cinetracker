@@ -10,28 +10,31 @@ const router = Router();
 export const login = async (req: Request, res: Response) => {
   // Extract username and password from request body
   const { username, password } = req.body;
+  console.log(req.body);
+  console.log(username, password);
 
   try {
-  // Find user in the database by username
-  const user = await User.findOne({ where: { username }});
+    // Find user in the database by username
+    const user = await User.findOne({ where: { username } });
 
-  // If user is not found, send response
-  if (!user) {
-    return res.status(401).json({ message: 'User not found' });
-  }
 
-  // Compare provided password with the stored hashed password
-  const passwordIsValid = await bcrypt.compare(password, user.password);
-  if (!passwordIsValid) { // If invalid, send response
-    return res.status(401).json({ message: 'Invalid credentials' });
-  }
+    // If user is not found, send response
+    if (!user) {
+      return res.status(401).json({ message: 'User not found' });
+    }
 
-  // Get secret key from .env
-  const secretKey = process.env.JWT_SECRET_KEY || '';
-  // Generate JWT token for the authenticated user
-  const token = jwt.sign({ username }, secretKey, { expiresIn: '1h' });
-  
-  return res.json({ token });
+    // Compare provided password with the stored hashed password
+    const passwordIsValid = await bcrypt.compare(password, user.password);
+    if (!passwordIsValid) { // If invalid, send response
+      return res.status(401).json({ message: 'Invalid password' });
+    }
+
+    // Get secret key from .env
+    const secretKey = process.env.JWT_SECRET_KEY || '';
+    // Generate JWT token for the authenticated user
+    const token = jwt.sign({ username }, secretKey, { expiresIn: '1d' });
+
+    return res.json({ token });
   } catch (error) {
     console.error("Error during login:", error);
     return res.status(500).json({ message: 'Internal server error during login' });
@@ -49,11 +52,11 @@ export const signUp = async (req: Request, res: Response) => {
 
     // Create user in the database with provided details
     const newUser = await User.create({ username, email, password: hashedPassword });
-    
+
     // Get secret key from .env
     const secretKey = process.env.JWT_SECRET_KEY || '';
     // Generate JWT token for the authenticated user
-    const token = jwt.sign({ username: newUser.username }, secretKey, { expiresIn: '1h' });
+    const token = jwt.sign({ username: newUser.username }, secretKey, { expiresIn: '1d' });
 
     res.json({ token }); // Send the token as a JSON response
     // res.status(201).json(newUser);
