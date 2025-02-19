@@ -1,20 +1,5 @@
-import { useState, useEffect } from "react";
-import TVShowsCard from "../components/TVShowsCard";
-import YearDropdown from "../components/YearDropdown";
-import GenreDropdown from "../components/GenreDropdown";
-
-// Interface for the TV Show objects
-interface TVShow {
-  Title?: string;
-  Year?: string;
-  imdbID?: string;
-  Type?: string;
-  Poster?: string;
-  Director?: string;
-  imdbRating?: string;
-}
-
 const TVShows = () => {
+<<<<<<< HEAD
   const [tvShows, setTvShows] = useState<TVShow[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
@@ -77,6 +62,9 @@ const TVShows = () => {
       </div>
     </>
   );
+=======
+  return <h1>TV Shows</h1>;
+>>>>>>> 6dd19daac42cffbd6af213b676f4b93d409ad052
 };
 
 export default TVShows;
