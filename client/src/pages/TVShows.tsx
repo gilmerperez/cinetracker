@@ -54,16 +54,9 @@ const TVShows = () => {
         {/* Set Error message if no data is found */}
         {error && <p className="text-center text-danger">{error}</p>}
         <div className="row row-cols-1 row-cols-md-3 g-4">
-          {/* For each TV Show in API call, map over them and render data in MovieCard */}
+          {/* For each TV Show in API call, map over them and render data in TVShowsCard */}
           {tvShows.map((show: TVShow) => (
-            <TVShowsCard
-              key={show.imdbID || "N/A"}
-              title={show.Title || "N/A"}
-              director={show.Director || "N/A"}
-              releaseDate={show.Year || "N/A"}
-              rating={show.imdbRating || "N/A"}
-              poster={show.Poster || "N/A"}
-            />
+            <TVShowsCard key={show.imdbID || "N/A"} show={show} />
           ))}
         </div>
       </div>

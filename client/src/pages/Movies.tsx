@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import MovieCard from "../components/MoviesCard";
+import MoviesCard from "../components/MoviesCard";
 import YearDropdown from "../components/YearDropdown";
 import GenreDropdown from "../components/GenreDropdown";
 // import CardSection from "../components/Cards";
@@ -57,7 +57,7 @@ const Movies = () => {
         <div className="row row-cols-1 row-cols-md-3 g-4">
           {/* For each Movie in API call, map over them and render data in MovieCard */}
           {movies.map((movie: Movie) => (
-            <MovieCard key={movie.imdbID || "N/A"} movie={movie} />
+            <MoviesCard key={movie.imdbID || "N/A"} movie={movie} />
           ))}
         </div>
       </div>

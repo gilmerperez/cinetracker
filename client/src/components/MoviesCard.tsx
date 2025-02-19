@@ -16,7 +16,7 @@ interface MovieCardProps {
   movie: Movie; // Ensure movie is a Movie object
 }
 
-const MovieCard: React.FC<MovieCardProps> = ({ movie }) => {
+const MoviesCard: React.FC<MovieCardProps> = ({ movie }) => {
   // Add to Library Function
   const handleAddToLibrary = () => {
     addMovieToLibrary(movie);
@@ -46,10 +46,7 @@ const MovieCard: React.FC<MovieCardProps> = ({ movie }) => {
           </div>
 
           {/* Add to Library Button */}
-          <button
-            onClick={handleAddToLibrary}
-            className="btn btn-outline-primary"
-          >
+          <button onClick={handleAddToLibrary} className="btn btn-outline-primary">
             Add to Library
           </button>
         </div>
@@ -70,4 +67,4 @@ const MovieCard: React.FC<MovieCardProps> = ({ movie }) => {
   );
 };
 
-export default MovieCard;
+export default MoviesCard;

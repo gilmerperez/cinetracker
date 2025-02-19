@@ -1,21 +1,28 @@
 import React from "react";
+import { addTVShowToLibrary } from "../pages/Library";
 
 // Interface for TVShowsCardProps
-interface TVShowsCardProps {
-  title?: string;
-  director?: string;
-  releaseDate?: string;
-  rating?: string;
-  poster?: string;
+interface TVShow {
+  Title?: string;
+  Year?: string;
+  imdbID?: string;
+  Type?: string;
+  Poster?: string;
+  Director?: string;
+  imdbRating?: string;
 }
 
-const TVShowsCard: React.FC<TVShowsCardProps> = ({
-  title,
-  director,
-  releaseDate,
-  rating,
-  poster,
-}) => {
+interface TVShowsCardProps {
+  show: TVShow; // Ensure show is a TVShow object
+}
+
+const TVShowsCard: React.FC<TVShowsCardProps> = ({ show }) => {
+  // Add to Library Function
+    const handleAddToLibrary = () => {
+      addTVShowToLibrary(show);
+      alert(`${show.Title} added to your library!`);
+    };
+
   return (
     <div className="col-md-6">
       <div className="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
@@ -28,25 +35,27 @@ const TVShowsCard: React.FC<TVShowsCardProps> = ({
             <strong className="d-inline-block mb-2 text-primary-emphasis">
               TV Show
             </strong>
-            <h3 className="mb-0">{title}</h3>
+            <h3 className="mb-0">{show.Title || "N/A"}</h3>
             <div className="mb-1 text-body-secondary">
-              {releaseDate || "N/A"}
+              {show.Year || "N/A"}
             </div>
             <p className="card-text mb-3">
-              <strong>Director:</strong> {director || "N/A"} <br />
-              <strong>Rating:</strong> {rating || "N/A"}
+              <strong>Director:</strong> {show.Director || "N/A"} <br />
+              <strong>Rating:</strong> {show.imdbRating || "N/A"}
             </p>
           </div>
 
           {/* Add to Library Button */}
-          <button className="btn btn-outline-primary">Add to Library</button>
+          <button onClick={handleAddToLibrary} className="btn btn-outline-primary">
+            Add to Library
+          </button>
         </div>
 
         {/* Poster */}
         <div className="col-auto d-none d-lg-block">
           <img
-            src={poster || "N/A"}
-            alt={title || "N/A"}
+            src={show.Poster || "N/A"}
+            alt={show.Title || "N/A"}
             width="200"
             height="250"
             className="bd-placeholder-img"
