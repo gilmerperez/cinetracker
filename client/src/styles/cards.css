@@ -1,7 +1,4 @@
-.col {
-    height: 275px;
-    width: 200px; 
-}
+
 /* div.d-flex.justify-content-between.mt-3 {
     
 } */
@@ -18,7 +15,6 @@ div.d-flex.flex-column.h-100.p-5.pb-3.text-white.text-shadow-1 {
 }   
 .movie-card {
     box-shadow: 2px 2px 2px 2px grey !important;
-    background-image: url('./src/assets/scarface.jpg') !important;
     background-size: cover;
     background-position: center;
     /* background-color: red !important; */
@@ -30,21 +26,16 @@ div.d-flex.flex-column.h-100.p-5.pb-3.text-white.text-shadow-1 {
   .text-bg-dark {
    
   }
-  /* .backgroundimg {
-    background-image: url('./src/assets/scarface.jpg') !important;
-
-  } */
 .card-button {
     background-color: black !important;
     height: 1.5rem;
     width: 1.5rem;
     padding: 0 0 0 0 !important;
-    
-    
-
-
-
 }
+    
+
+
+ 
 .svg-button svg {
     fill: currentColor !important;
     color: orange !important;
@@ -56,6 +47,8 @@ div.d-flex.flex-column.h-100.p-5.pb-3.text-white.text-shadow-1 {
 /* Add this to your 'cards-movie.css' file */
 .movie-card {
     transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    height: 275px!important;
+    width: 200px!important; 
   }
   
   .movie-card:active {
