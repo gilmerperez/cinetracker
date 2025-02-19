@@ -27,3 +27,8 @@ sequelize.sync({force: false}).then(() => {
     console.log(`Server is listening on port ${PORT}`);
   });
 });
+
+sequelize
+  .authenticate()
+  .then(() => console.log("✅ Connected to PostgreSQL successfully."))
+  .catch((err) => console.error("❌ Unable to connect:", err));
