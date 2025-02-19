@@ -1,54 +1,129 @@
-// Props for passing the selected year to the parent component
+import React, { useState } from 'react';
+
 interface YearDropdownProps {
   onYearChange: (year: string) => void;
 }
 
 const YearDropdown: React.FC<YearDropdownProps> = ({ onYearChange }) => {
-  const setSelectedYear = (year: string) => {
-    onYearChange(year); // Notify parent component about the selected year
+  const currentYear = new Date().getFullYear();
+  const startYear = 1900;
+  const years: string[] = [];
+  for (let y = currentYear; y >= startYear; y--) {
+    years.push(y.toString());
+  }
+
+  // State for the selected year (when the dropdown is not active)
+  const [selectedYear, setSelectedYear] = useState<string>('');
+  // State for the search term in the input field (when active)
+  const [searchTerm, setSearchTerm] = useState<string>('');
+  // State to control if the input field (editable mode) is active
+  const [editing, setEditing] = useState<boolean>(false);
+  // State to control the visibility of the dropdown list
+  const [showDropdown, setShowDropdown] = useState<boolean>(false);
+
+  // Filter the list of years based on the search term
+  const filteredYears = years.filter((year) =>
+    year.includes(searchTerm)
+  );
+
+  // When a year is selected, update the state and notify the parent
+  const handleSelect = (year: string) => {
+    setSelectedYear(year);
+    onYearChange(year);
+    // Switch back to the button view
+    setEditing(false);
+    setShowDropdown(false);
+    setSearchTerm('');
   };
 
-  const handleYearSelect = (year: string) => {
-    setSelectedYear(year); // Update local state
-    onYearChange(year); // Notify parent component about the selected year
+  // Reset selection and clear the input
+  const handleReset = () => {
+    setSelectedYear('');
+    onYearChange('');
+    setEditing(false);
+    setShowDropdown(false);
+    setSearchTerm('');
+  };
+
+  // Activate editing mode
+  const handleButtonClick = () => {
+    setEditing(true);
+    setShowDropdown(true);
   };
 
   return (
-    <div className="dropdown">
-      <button className="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Year</button>
-      <ul className="dropdown-menu">
-        {[
-          "2024",
-          "2023",
-          "2022",
-          "2021",
-          "2020",
-          "2019",
-          "2018",
-          "2017",
-          "2016",
-          "2015",
-          "2014",
-          "2013",
-          "2012",
-          "2011",
-          "2010",
-          "2009",
-          "2008",
-          "2007",
-          "2006",
-          "2005",
-          "2004",
-          "2003",
-          "2002",
-          "2001",
-          "2000",
-        ].map((year) => (
-          <li key={year}>
-            <a className="dropdown-item" href="#" onClick={() => handleYearSelect(year)}>{year}</a>
+    <div style={{ position: 'relative', width: '200px' }}>
+      {/* Show button view if not editing */}
+      {!editing ? (
+        <button
+          className="btn btn-secondary btn-sm dropdown-toggle"
+          type="button"
+          onClick={handleButtonClick}
+        >
+          {selectedYear || "Year"}
+        </button>
+      ) : (
+        // Show input field when editing
+        <input
+          type="text"
+          className="form-control form-control-sm"
+          placeholder="Select year"
+          value={searchTerm}
+          onChange={(e) => {
+            setSearchTerm(e.target.value);
+            setShowDropdown(true);
+          }}
+          // On blur, revert to button view if nothing is selected
+          onBlur={() => {
+            // Delay to allow selection click to register
+            setTimeout(() => {
+              if (!selectedYear) {
+                setEditing(false);
+                setShowDropdown(false);
+                setSearchTerm('');
+              }
+            }, 150);
+          }}
+          autoFocus
+        />
+      )}
+
+      {showDropdown && editing && (
+        <ul
+          className="dropdown-menu show"
+          style={{
+            maxHeight: '200px',
+            overflowY: 'auto',
+            width: '100%',
+            position: 'absolute',
+            zIndex: 1000,
+          }}
+        >
+          {/* Reset option */}
+          <li>
+            <button
+              type="button"
+              className="dropdown-item"
+              onMouseDown={(e) => e.preventDefault()}
+              onClick={handleReset}
+            >
+              Reset
+            </button>
           </li>
-        ))}
-      </ul>
+          {filteredYears.map((year) => (
+            <li key={year}>
+              <button
+                type="button"
+                className="dropdown-item"
+                onMouseDown={(e) => e.preventDefault()}
+                onClick={() => handleSelect(year)}
+              >
+                {year}
+              </button>
+            </li>
+          ))}
+        </ul>
+      )}
     </div>
   );
 };

@@ -1,7 +1,7 @@
 import { Router, Request, Response } from 'express';
-import { User } from '../models/User.js';
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcrypt';
+import { User } from '../models/index.js';
 
 // Create a new router instance
 const router = Router();
@@ -11,7 +11,7 @@ export const login = async (req: Request, res: Response) => {
   // Extract username and password from request body
   const { username, password } = req.body;
   console.log(req.body);
-  console.log(username, password);
+  console.log(username, password);// Create a new User model instance
 
   try {
     // Find user in the database by username

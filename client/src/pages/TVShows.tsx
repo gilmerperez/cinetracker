@@ -1,64 +1,50 @@
-import { useState, useEffect } from "react";
-import TVShowsCard from "../components/TVShowsCard";
+import { CardData } from "../interfaces/CardData";
+import { PosterReqData } from "../interfaces/PosterReqData";
+import { useEffect, useState } from "react";
 import YearDropdown from "../components/YearDropdown";
 import GenreDropdown from "../components/GenreDropdown";
-
-// Interface for the TV Show objects
-interface TVShow {
-  Title?: string;
-  Year?: string;
-  imdbID?: string;
-  Type?: string;
-  Poster?: string;
-  Director?: string;
-  imdbRating?: string;
-}
+import { getPosters } from "../api/postersAPI";
+import CardSection from "../components/Cards";
 
 const TVShows = () => {
-  const [tvShows, setTvShows] = useState<TVShow[]>([]);
-  const [loading, setLoading] = useState<boolean>(true);
-  const [error, setError] = useState<string | null>(null);
+  const [cards, setCards] = useState<CardData[]>([]);
+  const [reqData, setReqData] = useState<PosterReqData>({ Type: "tv" });
 
-  // Define the API URL with your OMDb API key
-  const apiKey = import.meta.env.VITE_OMDB_API_KEY;
-  const apiUrl = `https://www.omdbapi.com/?apikey=${apiKey}&s=movie&type=series`;
 
-  // Fetch TV Shows from OMDb API when the component mounts
+  // Handlers for updating the request data
+  const handleYearChange = (year: string) => {
+    setReqData((prevReqData) => ({
+      ...prevReqData,
+      Year: year,
+    }));
+  };
+
+  const handleGenreChange = (genreId: number | null) => {
+    setReqData((prevReqData) => ({
+      ...prevReqData,
+      Genre: genreId === null ? undefined : genreId,
+    }));
+  };
+
   useEffect(() => {
-    const fetchTVShows = async () => {
-      try {
-        const response = await fetch(apiUrl);
-        const data = await response.json();
-        if (data.Response === "True") {
-          setTvShows(data.Search); // Store TV Show results in state variable
-        } else {
-          setError("No TV shows found");
-        }
-      } catch (error) {
-        setError("Error fetching data from OMDb API");
-      } finally {
-        setLoading(false); // Hide Loading indicator after data successfully loads
-      }
-    };
-    fetchTVShows();
-  }, [apiUrl]); // Empty dependency array makes this run once when the component mounts
+    getPosters(reqData)
+      .then((data) => {
+        console.log(data);
+        setCards(data);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  }, [reqData]);
 
   return (
     <>
-      <YearDropdown />
-      <GenreDropdown />
-      <div className="container py-5">
-        <h1 className="text-center mb-4">TV Shows</h1>
-        {/* Show Loading icon as API fetches data */}
-        {loading && <p className="text-center">Loading...</p>}
-        {/* Set Error message if no data is found */}
-        {error && <p className="text-center text-danger">{error}</p>}
-        <div className="row row-cols-1 row-cols-md-3 g-4">
-          {/* For each TV Show in API call, map over them and render data in TVShowsCard */}
-          {tvShows.map((show: TVShow) => (
-            <TVShowsCard key={show.imdbID || "N/A"} show={show} />
-          ))}
-        </div>
+      <YearDropdown onYearChange={handleYearChange}/>
+      <GenreDropdown onGenreChange={handleGenreChange} type={reqData.Type as "movie" | "tv"}/>
+      <div className="card-parent-container">
+        {cards.map((card, index) => (
+                  <CardSection {...card} key={index}/>
+                ))}
       </div>
     </>
   );
