@@ -15,6 +15,7 @@ div.stanley {
     height: 250px !important;
     width: 250px !important;
 }
+
 div.gilmer {
     background-image: url('../../public/Gilmer-Perez.png');
     background-size: cover;
@@ -22,6 +23,7 @@ div.gilmer {
     height: 250px !important;
     width: 250px !important;
 }
+
 div.adi {
     background-image: url('../../public/Adi-Patel.jpg');
     background-size: cover;
@@ -29,6 +31,7 @@ div.adi {
     height: 250px !important;
     width: 250px !important;
 }
+
 div.freddy {
     background-image: url('../../public/Freddy-Laboy.JPG');
     background-size: cover;
@@ -36,11 +39,13 @@ div.freddy {
     height: 250px !important;
     width: 250px !important;
 }
+
 div.center {
     display: flex;
     gap: 2px;
     align-items: center;
 }
+
 div.custom-flex {
     display: flex;
     gap: 20px;
@@ -51,11 +56,9 @@ div.custom-flex {
     padding: 0;
     box-sizing: border-box;
     justify-content: center !important;
-    
-
-    
 }
-.card-button {
+
+.contact-card-button {
     fill: currentColor !important;
     color: #ff6f00 !important;
 }
