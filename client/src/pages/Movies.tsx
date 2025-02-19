@@ -1,11 +1,12 @@
-import Dropdown from "../components/Dropdown";
+import GenreDropdown from "../components/GenreDropdown";
+import YearDropdown from "../components/YearDropdown";
 import CardSection from "../components/Cards";
-
 
 const Movies = () => {
   return (
     <div>
-      <Dropdown />
+      <GenreDropdown />
+      <YearDropdown />
       <CardSection />
     </div>
   );
