@@ -29,4 +29,6 @@ html, body {
 .flex-grow-1 {
     flex: 1; /* This makes the main area expand to fill the space */
 }
-  
+main {
+    padding-bottom: 100px;
+}
