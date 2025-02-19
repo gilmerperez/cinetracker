@@ -27,14 +27,14 @@ interface TVShow {
 // Function to add Movie to Library
 export const addMovieToLibrary = (movie: Movie) => {
   const storedMovies: Movie[] = JSON.parse(localStorage.getItem("library") || "[]");
-  const updatedMovies = [...storedMovies, movie]; // Add Movie to storedMovies array
+  const updatedMovies = [...storedMovies, movie]; // Add movie to storedMovies array
   localStorage.setItem("library", JSON.stringify(updatedMovies)); // Save updated array to localStorage
 };
 
 // Function to add TV Show to Library
 export const addTVShowToLibrary = (show: TVShow) => {
   const storedTVShows: TVShow[] = JSON.parse(localStorage.getItem("library") || "[]");
-  const updatedTVShows = [...storedTVShows, show]; // Add TV Show to storedTVShows array
+  const updatedTVShows = [...storedTVShows, show]; // Add TV show to storedTVShows array
   localStorage.setItem("library", JSON.stringify(updatedTVShows)); // Save updated array to localStorage
 };
 

@@ -62,6 +62,17 @@
   --btn-link-hover-bg: #31a9e1;
 }
 
+.movie-container-card{
+  padding: 0;
+}
+
+.card-parent-container{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  grid-gap: 1rem;
+}
+
 .page-container.dark {
   --background-color: #222222;
   --text-color: #f1f1f1;
