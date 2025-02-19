@@ -27,34 +27,31 @@ const MoviesCard: React.FC<MovieCardProps> = ({ movie }) => {
     <div className="col-md-6">
       <div className="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
         {/* Movie Details */}
-        <div
-          className="col p-4 d-flex flex-column justify-content-between"
-          style={{ minHeight: "300px" }}
-        >
+        <div className="col p-4 d-flex flex-column justify-content-between" style={{ minHeight: "300px" }}>
           <div>
-            <strong className="d-inline-block mb-2 text-primary-emphasis">
-              Movie
-            </strong>
-            <h3 className="mb-0">{movie.Title || "N/A"}</h3>
+            <strong className="d-inline-block mb-2 text-primary-emphasis">Movie</strong>
+            <h3 className="mb-0">{movie.Title || "No Information Available"}</h3>
             <div className="mb-1 text-body-secondary">
-              {movie.Year || "N/A"}
+              {movie.Year || "No Information Available"}
             </div>
             <p className="card-text mb-3">
-              <strong>Director:</strong> {movie.Director || "N/A"} <br />
-              <strong>Rating:</strong> {movie.imdbRating || "N/A"}
+              <strong>Director:</strong>{" "}
+              {movie.Director || "No Information Available"} <br />
+              <strong>Rating:</strong>{" "}
+              {movie.imdbRating || "No Information Available"}
             </p>
           </div>
 
           {/* Add to Library Button */}
-          <button onClick={handleAddToLibrary} className="btn btn-outline-primary">
-            Add to Library
+          <button
+            onClick={handleAddToLibrary} className="btn btn-outline-primary">Add to Library
           </button>
         </div>
 
         {/* Poster */}
         <div className="col-auto d-none d-lg-block">
           <img
-            src={movie.Poster || "N/A"}
+            src={movie.Poster || "https://via.placeholder.com/200x250?text=No+Image"}
             alt={movie.Title || "N/A"}
             width="200"
             height="250"
