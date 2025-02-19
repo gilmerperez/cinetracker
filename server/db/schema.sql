@@ -4,24 +4,32 @@ DROP DATABASE IF EXISTS friends_db;
 -- CREATE DATABASE
 CREATE DATABASE friends_db;
 
-CREATE TABLE user (
+-- Create the users table
+CREATE TABLE users (
     id SERIAL PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    username VARCHAR(255) UNIQUE NOT NULL,
     email VARCHAR(255) UNIQUE NOT NULL,
     password TEXT NOT NULL,
-    interested_movies INT[],
-    watched_movies TEXT[]
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
-CREATE TABLE movie_internal_id (
+-- Create the movie/tv-show table
+CREATE TABLE movie (
     id SERIAL PRIMARY KEY,
-    title VARCHAR(255) NOT NULL
+    movie_id VARCHAR(255) UNIQUE NOT NULL,  -- Stores OMDb Movie/TV Show ID
+    title VARCHAR(255) NOT NULL,
+    director VARCHAR(255),
+    release_date VARCHAR(255),
+    rating VARCHAR(50),
+    poster_url TEXT
 );
 
-CREATE TABLE review (
+-- Create a user_library table for the watchlist
+CREATE TABLE user_library (
     id SERIAL PRIMARY KEY,
-    user_id INT NOT NULL,
-    movie_internal_id INT NOT NULL,
-    review TEXT,
-    FOREIGN KEY (user_id) REFERENCES user(id) ON DELETE CASCADE,
-    FOREIGN KEY (movie_internal_id) REFERENCES movie_internal_id(id) ON DELETE CASCADE
+    user_id INT REFERENCES users(id) ON DELETE CASCADE,
+    movie_id INT REFERENCES movie(id) ON DELETE CASCADE,
+    added_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    UNIQUE (user_id, movie_id)  -- Prevent duplicate entries
 );
