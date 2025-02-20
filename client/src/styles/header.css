@@ -56,3 +56,10 @@ header {
 .custom-nav {
   padding-right: 20px;
 }
+
+.logo {
+  height: 60px; 
+  width: auto;
+  margin-right: 4px; 
+  vertical-align: middle; 
+}

@@ -7,7 +7,7 @@ import Auth from '../utils/auth';
 const Header = () => {
     const [loginCheck, setLoginCheck] = useState(false);
     useEffect(() => {
-      setLoginCheck(Auth.loggedIn());
+        setLoginCheck(Auth.loggedIn());
     }, []);
 
     const currentPage = useLocation().pathname;
@@ -20,7 +20,10 @@ const Header = () => {
         <header className="d-flex flex-wrap justify-content-center py-3 mb-4">
             <a href="/Movies" className="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
                 <svg className="bi me-2" width="40" height="32"><use xlinkHref="#bootstrap"></use></svg>
-                <span className="fs-4 logo">CineTracker</span>
+                <span className="fs-4">
+                    <img src="/LightThemeLogo.png" alt="Logo" className="logo" />
+                    <strong>CineTracker</strong>
+                </span>
             </a>
 
             <ul className="nav nav-pills custom-nav">

@@ -20,6 +20,13 @@ const ProtectedRoute = ({ element }: { element: JSX.Element }) => {
 };
 export default ProtectedRoute;
 
+import { useParams } from 'react-router-dom';
+
+const DetailsWrapper = () => {
+  const { id } = useParams();
+  return <Details id={Number(id)} />;
+};
+
 const router = createBrowserRouter([
   {
     path: '/',
@@ -47,12 +54,12 @@ const router = createBrowserRouter([
         element: <ProtectedRoute element={<Contact />} />,
       },
       {
-        path: '/Signup',
-        element: <ProtectedRoute element={<SignUp />} />,
+        path: '/Details/:id',
+        element: <ProtectedRoute element={<DetailsWrapper />} />,
       },
       {
-        path: '/Details',
-        element: <ProtectedRoute element={<Details />} />,
+        path: '/Signup',
+        element: <ProtectedRoute element={<SignUp />} />,
       },
     ],
   },

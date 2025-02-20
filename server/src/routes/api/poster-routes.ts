@@ -5,20 +5,7 @@ const router = express.Router();
 export const movieFetch = async (req: Request, res: Response) => {
     const api_key = process.env.TMDB_API_KEY;
     
-    let year! : string;
-    let genre! : string;
-
-    try {
-        year = req.body.Year as string;
-    }
-    catch (err) {
-    }
-
-    try {
-        genre = req.body.Genre as string;
-    }
-    catch (err) {
-    }
+    const { Year: year = "", Genre: genre = "" } = req.body;
 
     const base_url = `https://api.themoviedb.org/3/discover/movie?api_key=${api_key}&language=en-US`;
     const base_end_url = `&sort_by=popularity.desc`;
@@ -54,52 +41,27 @@ export const movieFetch = async (req: Request, res: Response) => {
 
 export const tvFetch = async (req: Request, res: Response) => {
     const api_key = process.env.TMDB_API_KEY;
-    
-    let year! : string;
-    let genre! : string;
+  const { Year: year = "", Genre: genre = "" } = req.body;
 
-    try {
-        year = req.body.Year as string;
-    }
-    catch (err) {
-    }
+  // Base URL and fixed end parameters
+  const baseUrl = `https://api.themoviedb.org/3/discover/movie?api_key=${api_key}&language=en-US`;
+  const sortParam = `&sort_by=popularity.desc`;
 
-    try {
-        genre = req.body.Genre as string;
-    }
-    catch (err) {
-    }
+  // Build additional query parameters based on provided values
+  const yearParam = year ? `&primary_release_year=${year}` : "";
+  const genreParam = genre ? `&with_genres=${genre}` : "";
 
-    const base_url = `https://api.themoviedb.org/3/discover/tv?api_key=${api_key}&language=en-US`;
-    const base_end_url = `&sort_by=popularity.desc`;
-    const year_url = `&primary_release_year=${year}`;
-    const genre_url = `&with_genres=${genre}`;
-    if(year){
-        if(genre){
-            const response = await fetch(base_url + year_url + base_end_url + genre_url);
-            const data = await response.json();
-            res.json(data);
-        }
-        else{
-            const response = await fetch(base_url + year_url + base_end_url);
-            const data = await response.json();
-            res.json(data);
-        }
-    }
-    else{
-        if(genre){
-            const response = await fetch(base_url + base_end_url + genre_url);
-            const data = await response.json();
-            res.json(data);
-        }
-        else{
-            const response = await fetch(base_url + base_end_url);
-            const data = await response.json();
-            res.json(data);
-        }
-    }
-    
-    return res;
+  // Construct final URL
+  const finalUrl = `${baseUrl}${yearParam}${genreParam}${sortParam}`;
+
+  try {
+    const response = await fetch(finalUrl);
+    const data = await response.json();
+    return res.json(data);
+  } catch (err) {
+    console.error("Error fetching movies:", err);
+    return res.status(500).json({ error: "An error occurred while fetching movies." });
+  }
 };
 
 
