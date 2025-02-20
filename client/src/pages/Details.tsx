@@ -8,7 +8,7 @@ import { Container, Row, Col, Button } from 'react-bootstrap';
 
 const Jumbotron: React.FC<{ id: number }> = ({ id }) => {
   
-  const poster_url = "https://image.tmdb.org/t/p/w500";
+  const poster_url = "https://image.tmdb.org/t/p/original";
   const [cardDetails, setDetails] = useState<CardDetails>({});
 
   useEffect(() => {
@@ -27,7 +27,7 @@ const Jumbotron: React.FC<{ id: number }> = ({ id }) => {
 <div 
   className="parent-container" 
   style={{
-    backgroundImage: `url(https://i.ytimg.com/vi/KHlc-_SfL3Y/maxresdefault.jpg)`, // Replace with your image URL
+    backgroundImage: `url(${poster_url + cardDetails.BackdropLink})`,
     backgroundSize: 'cover',
     backgroundPosition: 'center',
     backgroundRepeat: 'no-repeat',
