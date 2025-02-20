@@ -75,7 +75,7 @@ const Library: React.FC = () => {
   }, [navigate]);
 
   return (
-    <div>
+    <div className="nonwide-container">
       <div>
         <h1>WatchList</h1>
         <div className="lib-card-parent-container">
