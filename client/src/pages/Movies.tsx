@@ -1,4 +1,3 @@
-
 import { CardData } from "../interfaces/CardData";
 import { PosterReqData } from "../interfaces/PosterReqData";
 import { useEffect, useState } from "react";
