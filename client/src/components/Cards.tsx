@@ -9,7 +9,7 @@ const CardSection: React.FC<CardData> = (props) => {
   return (
     <div className="movie-container-card row row-cols-1 row-cols-lg-3 align-items-stretch g-4">
       <div className="col-12 col-md-3">
-              <Link to={`/details`} className="text-decoration-none">
+              <Link to={`/details/`+props.MovieID} className="text-decoration-none">
                 <div
                   className="card movie-card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg"
                   style={{ backgroundImage: `url(${poster_url})` }} // Replace with your image URL or placeholder
