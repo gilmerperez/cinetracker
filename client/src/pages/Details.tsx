@@ -82,8 +82,6 @@ const Jumbotron: React.FC = () => {
           </div>
         </div>
 
-
-
         <div className="col-md-6">
           <div className="h-100 p-5 bg-body-tertiary border rounded-3 review-container" style={{ padding: '10px' }}>
             <h2>Reviews</h2>
