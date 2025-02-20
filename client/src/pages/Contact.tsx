@@ -113,6 +113,12 @@ const Contact = () => {
       {/* Developers Section */}
       {/* <div className="custom-flex container py-5"> */}
       {/* <div className="custom-flex row justify-content-center shadow-lg p-4 rounded-4"> */}
+      <h1 style={{ textAlign: "center", paddingBottom: "20px", fontWeight: "bolder" }}>Our Developers</h1>
+      <h5 style={{ textAlign: "center", paddingBottom: "20px" }}>
+  From left to right: <strong>Stanley Bertrand</strong>, <strong>Gilmer Perez</strong>, <strong>Adi Patel</strong> and <strong>Freddy Laboy</strong>.
+</h5>
+
+
       <div className="custom-flex col-12 col-md-3">
         <div
           className="card stanley contact-card movie-card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg"
@@ -122,6 +128,7 @@ const Contact = () => {
               <li className="me-auto"></li>
             </ul>
             <div className="center d-flex justify-content-between mt-3">
+              
               {/* Action 1 button - GitHub redirect */}
               <a href="https://github.com/bertrandstanley" target="_blank" rel="noopener noreferrer">
                 <button className="contact-card-button card-btn btn text-white svg-button btn-sm border-0">
