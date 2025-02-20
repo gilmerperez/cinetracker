@@ -1,203 +1,103 @@
-# 15 Project 2: Interactive Full-Stack Application
+# CineTracker
 
-Projects play a key role in your journey to becoming a software developer. As you enter the last phase of the boot camp, you’ll begin to apply for development jobs. If you want to land interviews, your portfolio must feature high-quality deployed examples of your work&mdash;and you can use your finished projects for that very purpose.
+CineTracker is a full-stack web application designed for movie and TV show enthusiasts who want to keep track of what they’ve watched and what they plan to watch. The platform allows users to search for movies and TV shows using the OMDb API, add titles to their personal library, and categorize them based on viewing status.
 
-As your first opportunity to show employers your collaborative skills and coding abilities, this particular project will be a focal point of your portfolio. Employers want to see what you can do, but they also want to see how you work with other developers. The more examples of deployed collaborative work you have in your portfolio, the more likely you are to get an interview and a job.
+The goal of CineTracker is to provide an interactive and user-friendly experience for managing entertainment choices while implementing authentication to ensure personalized libraries for each user. Built using the PERN stack (PostgreSQL, Express, React, Node.js), the application features a robust back-end with secure authentication using JWT, a dynamic front-end with React, and a Sequelize ORM database integration for persistent storage.
 
-## Project Requirements
+## Table of Contents
 
-You and your group will use everything you’ve learned over the past eight modules to create a real-world full-stack application that you’ll be able to showcase to potential employers. The user story and acceptance criteria will depend on the project that you create, but your project must fulfill the following requirements:
+- [Usage](#usage)
+- [Mock Up](#mock-up)
+- [Instructions](#instructions)
+- [Key Features](#key-features)
+- [Technology Stack](#technology-stack)
+- [Additional Resources](#additional-resources)
 
-* Use Node.js and Express.js to create a RESTful API.
+## Usage
 
-* Use React for the front end.
+To start the application, run the following commands:
 
-* Use PostgreSQL and the Sequelize ORM for the database.
+1. Install dependencies:
+  ```
+  npm install
+  ```
 
-* Have both GET and POST routes for retrieving and adding new data.
+2. Set up environment variables in a .env file
 
-* Use at least two server-side APIs.
+3. Run the application:
+  ```
+  npm run start:dev
+  ```
 
-* Have a folder structure that follows the separation of concerns design principle.
+## Mock-Up
 
-* Include authentication using JWT.
+The following animation shows the web application's appearance and functionality:
 
-* Protect API keys and sensitive information with environment variables.
+![Screenshot]()
 
-* Be deployed using Render (with data).
+## Instructions
 
-* Have a polished UI.
+1. Clone the repository:
 
-* Be responsive.
+```
+git clone https://github.com/AdiPatel095/CineTracker.git
+```
 
-* Be interactive (i.e., accept and respond to user input).
+2. navigate to the project directory:
 
-* Meet good-quality coding standards (file structure, naming conventions, follows best practices for class/id naming conventions, indentation, quality comments, etc.).
+```
+cd cinetracker
+```
 
-* Have a professional README (with unique name, description, technologies used, screenshot, and link to deployed application).
+3. Install dependencies: 
 
-## Presentation Requirements
+```
+npm install
+```
 
-Use this [project presentation template](https://docs.google.com/presentation/d/10QaO9KH8HtUXj__81ve0SZcpO5DbMbqqQr4iPpbwKks/edit?usp=sharing) to address the following:
+4. Set up a PostgreSQL database and configure the .env file.
 
-* Elevator pitch: a one minute description of your application
+5. Run the application:
+  ```
+  npm run start:dev
+  ```
 
-* Concept: What is your user story? What was your motivation for development?
+## Key Features
 
-* Process: What were the technologies used? How were tasks and roles broken down and assigned? What challenges did you encounter? What were your successes?
+* **User Authentication:** Secure login and signup using JWT authentication.
 
-* Demo: Show your stuff!
+* **Search Functionality:** Fetch movies and TV shows from the OMDb API.
 
-* Directions for Future Development
+* **Personal Library:** Users can add and categorize movies and TV shows.
 
-* Links to the deployed application and the GitHub repository. Use the [Deploy with Render and PostgreSQL](https://coding-boot-camp.github.io/full-stack/render/deploy-with-render-and-postgresql) post on The Full-Stack Blog if you need a reminder on how to deploy to Render.
+* **Dynamic UI:** React-based front-end with an intuitive design.
 
-## Grading Requirements
+* **Persistent Storage:** PostgreSQL database with Sequelize ORM integration.
 
-> **Note**: If a project submission is marked as “0”, it is considered incomplete and will not count towards your graduation requirements. Examples of incomplete submissions include the following:
->
-> * A repository that has no code
->
-> * A repository that includes a unique name but nothing else
->
-> * A repository that includes only a README file but nothing else
->
-> * A repository that only includes starter code
+* **Responsive Design:** Works on desktop and mobile devices.
 
-This project is graded based on the following criteria:
+* **Theme Customization:** Users can switch between different theme colors.
 
-### Technical Acceptance Criteria: 25%
+## Technology Stack
 
-* Satisfies the following code requirements:
+* **Front-end:** React, TypeScript, CSS, Bootstrap
 
-  * Application uses a Node.js and Express.js back end and uses both GET and POST routes for retrieving and adding new data.
+* **Back-end:** Node.js, Express.js
 
-  * Application has a folder structure that follows the separation of concerns design principle and uses React for the front end.
+* **Database:** PostgreSQL, Sequelize ORM
 
-  * Application is backed by a PostgreSQL database with a Sequelize ORM and protects API keys and sensitive information with environment variables.
+* **Authentication:** JSON Web Tokens, bcrypt for password hashing
 
-  * Application includes user authentication using JWT.
+* **API Integration:** TMDb & OMDb API for Movie and TV Show data
 
-  * Application uses at least two server-side APIs.
+* **Hosting & Deployment:** Render Deployment
 
-### Concept 10%
+## Additional Resources
 
-* Application should be a unique and novel idea.
+GitHub Repository: [CineTracker](https://github.com/AdiPatel095/CineTracker)
 
-* Your group should clearly and concisely articulate your project idea.
+Deployed Application: [Render Link]()
 
-### Deployment: 20%
+TMDb API Documentation: [TMDb API](https://developer.themoviedb.org/reference/intro/getting-started)
 
-* Application deployed at live URL on Render and loads with no errors.
-
-* Application GitHub URL submitted.
-
-### Repository Quality: 10%
-
-* Repository has a unique name.
-
-* Repository follows best practices for file structure and naming conventions.
-
-* Repository follows best practices for class/id-naming conventions, indentation, quality comments, etc.
-
-* Repository contains multiple descriptive commit messages.
-
-* Repository contains quality README file with description, screenshot, and link to deployed application.
-
-### Application Quality: 15%
-
-* Application user experience is intuitive and easy to navigate.
-
-* Application user interface style is clean and polished.
-
-* Application is responsive.
-
-### Presentation 10%
-
-* Your group should present using a slide deck.
-
-* Every group member should speak during the presentation.
-
-* Your presentation should follow the [Project Presentation Template](https://docs.google.com/presentation/d/10QaO9KH8HtUXj__81ve0SZcpO5DbMbqqQr4iPpbwKks/edit?usp=sharing).
-
-### Collaboration 10%
-
-* There are no major disparities in the number of GitHub contributions between group members.
-
-## How to Submit Your Interactive Full-Stack Project
-
-**Each member of your group** is required to submit the following for review:
-
-* The URL of the deployed application.
-
-* The URL of the GitHub repository, with a unique name and a README describing the project.
-
----
-
-© 2025 edX Boot Camps LLC. Confidential and Proprietary. All Rights Reserved.
-
-### Project Title:
-
-### Wireframe:
-
-### User Story:
-
-* As a (type of user), I want (feature of action) so that (benefit or reason).
-
-* Given (context or situation), when (action is performed), then (expected outcome).
-
-* Given (context or situation), when (another action is performed), then (expected outcome).
-
-### Project Description:
-
-### 2 APIs:
-
-### NPM packages:
-
-### CSS Solution:
-
-### Starting Issues:
-
-### Other Technologies:
-
-### Relationship Between Models:
-
-### Breakdown of Tasks/Pseudocode:
-
-* ADI:
-
-* GILMER:
-
-* FREDDY:
-
-* STANLEY:
-
-### Requirements:
-
-* Must be responsive
-
-* Must have a polished UI
-
-* Must use React for the front end
-
-* Must include authentication using JWT
-
-* Must use at least two server-side APIs
-
-* Must be deployed using Render (with data)
-
-* Must use Node.js and Express.js to create a RESTful API
-
-* Must use PostgreSQL and the Sequelize ORM for the database
-
-* Must be interactive (i.e., accept and respond to user input)
-
-* Must have both GET and POST routes for retrieving and adding new data
-
-* Must protect API keys and sensitive information with environment variables
-
-* Must meet good-quality coding standards (file structure, best practices, etc.)
-
-* Must have a professional README (unique name, description, link to the deployed app)
-
-* Must have a folder structure that follows the separation of concerns design principle
+OMDb API Documentation: [OMDb API](https://www.omdbapi.com/)
