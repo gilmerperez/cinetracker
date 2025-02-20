@@ -54,8 +54,8 @@ const router = createBrowserRouter([
         element: <ProtectedRoute element={<Contact />} />,
       },
       {
-        path: '/Details/:id',
-        element: <ProtectedRoute element={<DetailsWrapper />} />,
+        path: '/Details',
+        element: <ProtectedRoute element={<Details />} />,
       },
       {
         path: '/Signup',

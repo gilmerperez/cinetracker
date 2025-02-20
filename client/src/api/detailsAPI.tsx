@@ -37,4 +37,22 @@ const getDetails = async (cardData: CardData) => {
     return detailsData;
 }
 
-export { getDetails };
+// export { getDetails };
+
+import { CardDetails } from '../interfaces/CardDetails';
+
+export const getDetails = async (movieID: string): Promise<CardDetails> => {
+  const apiKey = '6c7a3f86'; // Replace this with your actual OMDB API key
+  const url = `http://www.omdbapi.com/?i=${movieID}&apikey=${apiKey}`;
+
+  const response = await fetch(url);
+
+  if (!response.ok) {
+    throw new Error('Failed to fetch movie details');
+  }
+
+  const data = await response.json();
+
+  // Assuming 'data' matches the structure of CardDetails
+  return data;
+};
