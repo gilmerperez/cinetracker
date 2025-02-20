@@ -21,8 +21,6 @@ interface CardData {
 
 const Library: React.FC = () => {
   const navigate = useNavigate();
-  const [watchlist, setWatchlist] = useState<number[]>([]);
-  const [watched, setWatched] = useState<number[]>([]);
 
   // New state variables for card data
   const [watchlistCards, setWatchlistCards] = useState<CardData[]>([]);
@@ -45,30 +43,28 @@ const Library: React.FC = () => {
       }
 
       try {
-        // Fetch the library arrays (movie IDs)
-        const response: LibraryResponse = (await fetchLibrary(userID)).data;
-        setWatchlist(response.watchlist);
-        setWatched(response.already_watched);
-
+        // Fetch the library data from the API response
+        const result = await fetchLibrary(userID) as LibraryResponse;
+        console.log("Library data:", result);
         // For each movie ID in the watchlist, fetch its detailed card data.
         const watchlistCardsData: CardData[] = await Promise.all(
-          response.watchlist.map(async (movieId) => {
+          result.watchlist.map(async (movieId) => {
             // Adjust according to your API's response structure
             const data = await getDetailPosters(movieId);
             return data as CardData;
           })
         );
-        setWatchlistCards(watchlistCardsData);
+        setWatchlistCards(watchlistCardsData? watchlistCardsData : []);
 
         // For each movie ID in the watched array, fetch its detailed card data.
         const watchedCardsData: CardData[] = await Promise.all(
-          response.already_watched.map(async (movieId) => {
+          result.already_watched.map(async (movieId) => {
             // Adjust according to your API's response structure
             const data = await getDetailPosters(movieId);
             return data as CardData;
           })
         );
-        setWatchedCards(watchedCardsData);
+        setWatchedCards(watchedCardsData? watchedCardsData : []);
 
       } catch (error) {
         console.error("Error fetching library data:", error);
@@ -82,7 +78,7 @@ const Library: React.FC = () => {
     <div>
       <div>
         <h1>WatchList</h1>
-        <div className="card-parent-container">
+        <div className="lib-card-parent-container">
           {watchlistCards.map((card, index) => (
             <CardSection {...card} key={index} />
           ))}
@@ -90,7 +86,7 @@ const Library: React.FC = () => {
       </div>
       <div>
         <h1>Already Watched</h1>
-        <div className="card-parent-container">
+        <div className="lib-card-parent-container">
           {watchedCards.map((card, index) => (
             <CardSection {...card} key={index} />
           ))}

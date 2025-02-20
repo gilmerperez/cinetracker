@@ -56,7 +56,7 @@ async function postReview(userID: number, movieID: number, reviewText: string): 
   
   // Fetches all movies (or review entries) in a user's library
   async function fetchLibrary(userID: number): Promise<ApiResponse> {
-    const response = await fetch('/api/db/fetchLibrary', {
+    const response = await fetch('/api/db/fetchlibrary', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

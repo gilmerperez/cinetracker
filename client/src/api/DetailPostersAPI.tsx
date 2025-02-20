@@ -6,7 +6,7 @@ const getDetailPosters = async (reqData: number) => {
     };
 
     // Send the POST request with the JSON stringified requestBody.
-    const response = await fetch(`/api/details/fetch}`, {
+    const response = await fetch(`/api/details/fetch`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -16,11 +16,11 @@ const getDetailPosters = async (reqData: number) => {
 
     const data = await response.json();
     const newCardData: CardData = {
-        MovieID: data.id,
-        Title: data.title,
+        MovieID: data.reqData,
+        Title: data.original_title,
         Poster: data.poster_path,
     };
-
+    console.log(newCardData);
     
     return newCardData;
 }

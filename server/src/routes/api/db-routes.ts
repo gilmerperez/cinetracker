@@ -1,162 +1,184 @@
 import express, { Request, Response } from 'express';
-import { User, Movie, Review } from '../../models/index.js';
+import { User } from '../../models/index.js';
+import sequelize from '../../config/connection.js';
+import { QueryTypes } from 'sequelize';
 
 const router = express.Router();
 
-// Add a movie to a user's interested list (i.e. watchlist)
+// Helper: Convert a JavaScript number array to a PostgreSQL array literal string.
+const toPgArray = (arr: number[]): string => `{${arr.join(',')}}`;
+
+// INTERESTED POST: Add a movie to a user's watchlist using raw SQL queries.
 export const interestedPost = async (req: Request, res: Response) => {
   try {
-    const { UserID: userID, MovieID: movieID } = req.body;
-    if (!userID || !movieID) {
-      return res.status(400).json({ error: 'Missing UserID or MovieID' });
+    const { UserID, MovieID } = req.body;
+    
+    const userTable = User.getTableName();
+    
+    // Fetch the user record using a raw SELECT query.
+    const userRecords: any[] = await sequelize.query(
+      `SELECT * FROM "${userTable}" WHERE "id" = :userId`,
+      { replacements: { userId: UserID }, type: QueryTypes.SELECT }
+    );
+    if (userRecords.length === 0) {
+      return res.status(404).json({ error: "User not found" });
     }
-
-    const user = await User.findByPk(userID);
-    if (!user) {
-      return res.status(404).json({ error: 'User not found' });
+    const userRecord = userRecords[0];
+    
+    // Get the current watchlist (ensuring it's an array).
+    let currentWatchlist: number[] = userRecord.watchlist || [];
+    if (!Array.isArray(currentWatchlist)) {
+      // If stored as a string, try parsing it.
+      currentWatchlist = JSON.parse(currentWatchlist);
     }
-
-    // Append the movieID to the watchlist array if it doesn't already exist
-    const currentWatchlist = (user as any).watchlist || [];
-    if (currentWatchlist.includes(movieID)) {
-      return res.status(400).json({ error: 'Movie already in watchlist' });
+    
+    // Update if the MovieID is not already included.
+    if (!currentWatchlist.includes(MovieID)) {
+      currentWatchlist.push(MovieID);
+      const pgArray = toPgArray(currentWatchlist);
+      
+      // Use a raw UPDATE query to update the watchlist column.
+      await sequelize.query(
+        `UPDATE "${userTable}" SET "watchlist" = :watchlist::integer[] WHERE "id" = :userId`,
+        { replacements: { watchlist: pgArray, userId: UserID } }
+      );
     }
-    currentWatchlist.push(movieID);
-    await (user as any).update({ watchlist: currentWatchlist });
-
-    return res.status(200).json({
-      message: 'Movie added to interested list',
-      watchlist: currentWatchlist
-    });
-  } catch (err) {
-    console.error(err);
-    return res.status(500).json({ error: 'Server error' });
+    
+    res.status(200).json({ message: "Movie added to watchlist", watchlist: currentWatchlist });
+    return res;
+  } catch (error) {
+    console.error("Error in interestedPost:", error);
+    res.status(500).json({ error: "Server error" });
+    return res;
   }
 };
 
-// Add a movie to a user's already_watched list
+// WATCHED POST: Add a movie to a user's already_watched list using raw SQL queries.
 export const watchedPost = async (req: Request, res: Response) => {
   try {
-    const { UserID: userID, MovieID: movieID } = req.body;
-    if (!userID || !movieID) {
-      return res.status(400).json({ error: 'Missing UserID or MovieID' });
+    const { UserID, MovieID } = req.body;
+    console.log("watchedPost", UserID, MovieID);
+    
+    const userTable = User.getTableName();
+    
+    // Fetch the user record.
+    const userRecords: any[] = await sequelize.query(
+      `SELECT * FROM "${userTable}" WHERE "id" = :userId`,
+      { replacements: { userId: UserID }, type: QueryTypes.SELECT }
+    );
+    if (userRecords.length === 0) {
+      return res.status(404).json({ error: "User not found" });
     }
-
-    const user = await User.findByPk(userID);
-    if (!user) {
-      return res.status(404).json({ error: 'User not found' });
+    const userRecord = userRecords[0];
+    
+    // Get the current already_watched list.
+    let currentWatched: number[] = userRecord.already_watched || [];
+    if (!Array.isArray(currentWatched)) {
+      currentWatched = JSON.parse(currentWatched);
     }
-
-    // Append the movieID to the already_watched array if not already present
-    const currentWatched = (user as any).already_watched || [];
-    if (currentWatched.includes(movieID)) {
-      return res.status(400).json({ error: 'Movie already marked as watched' });
+    
+    // Update if the MovieID is not already present.
+    if (!currentWatched.includes(MovieID)) {
+      currentWatched.push(MovieID);
+      const pgArray = toPgArray(currentWatched);
+      
+      // Use a raw UPDATE query to update the already_watched column.
+      await sequelize.query(
+        `UPDATE "${userTable}" SET "already_watched" = :alreadyWatched::integer[] WHERE "id" = :userId`,
+        { replacements: { alreadyWatched: pgArray, userId: UserID } }
+      );
     }
-    currentWatched.push(movieID);
-    await (user as any).update({ already_watched: currentWatched });
-
-    return res.status(200).json({
-      message: 'Movie added to watched list',
-      already_watched: currentWatched
-    });
-  } catch (err) {
-    console.error(err);
-    return res.status(500).json({ error: 'Server error' });
+    
+    res.status(200).json({ message: "Movie added to already watched list", already_watched: currentWatched });
+    return res;
+  } catch (error) {
+    console.error("Error in watchedPost:", error);
+    res.status(500).json({ error: "Server error" });
+    return res;
   }
 };
 
-// Save a review for a movie into the review table
+// REVIEW POST: Save a review for a movie using a raw INSERT query.
 export const reviewPost = async (req: Request, res: Response) => {
   try {
-    const { UserID: userID, MovieID: movieID, Review: reviewText } = req.body;
-    if (!userID || !movieID || !reviewText) {
-      return res.status(400).json({ error: 'Missing required fields' });
-    }
-
-    // Verify that both the user and movie exist
-    const user = await User.findByPk(userID);
-    if (!user) {
-      return res.status(404).json({ error: 'User not found' });
-    }
-    const movie = await Movie.findByPk(movieID);
-    if (!movie) {
-      return res.status(404).json({ error: 'Movie not found' });
-    }
-
-    // Check if a review exists for this user and movie; update or create accordingly
-    let reviewRecord = await Review.findOne({
-      where: { user_id: userID, movie_id: movieID }
-    });
-    if (reviewRecord) {
-      await reviewRecord.update({ review: reviewText });
-    } else {
-      reviewRecord = await Review.create({
-        user_id: userID,
-        movie_id: movieID,
-        review: reviewText
-      });
-    }
-
-    return res.status(200).json({
-      message: 'Review saved',
-      review: reviewRecord
-    });
-  } catch (err) {
-    console.error(err);
-    return res.status(500).json({ error: 'Server error' });
+    const { UserID, MovieID, review_text } = req.body;
+    
+    // Assuming the reviews table is named "reviews".
+    const reviewTable = 'reviews';
+    // Insert the review and return the inserted row.
+    const [insertResults]: any[] = await sequelize.query(
+      `INSERT INTO "${reviewTable}" ("user_id", "movie_id", "review_text", "createdAt", "updatedAt")
+       VALUES (:userId, :movieId, :reviewText, NOW(), NOW())
+       RETURNING *;`,
+      { replacements: { userId: UserID, movieId: MovieID, reviewText: review_text } }
+    );
+    
+    res.status(200).json({ message: "Review saved", review: insertResults[0] });
+    return res;
+  } catch (error) {
+    console.error("Error in reviewPost:", error);
+    res.status(500).json({ error: "Server error" });
+    return res;
   }
 };
 
-// Fetch all reviews for a given movie
+// REVIEW FETCH: Fetch all reviews for a given movie using a raw SELECT query with a join.
 export const reviewFetch = async (req: Request, res: Response) => {
   try {
-    const { MovieID: movieID } = req.body;
-    if (!movieID) {
-      return res.status(400).json({ error: 'Missing MovieID' });
-    }
-
-    // Fetch reviews and include the reviewing user's info
-    const reviews = await Review.findAll({
-      where: { movie_id: movieID },
-      include: [{
-        model: User,
-        attributes: ['id', 'username']
-      }]
+    const { MovieID } = req.body;
+    
+    // Define table names.
+    const reviewTable = 'reviews';
+    const userTable = User.getTableName();
+    // Join reviews with user data.
+    const query = `
+      SELECT r.*, u."username", u."email"
+      FROM "${reviewTable}" r
+      JOIN "${userTable}" u ON r."user_id" = u."id"
+      WHERE r."movie_id" = :movieId;
+    `;
+    const reviews: any[] = await sequelize.query(query, {
+      replacements: { movieId: MovieID },
+      type: QueryTypes.SELECT
     });
-    return res.status(200).json({ reviews });
-  } catch (err) {
-    console.error(err);
-    return res.status(500).json({ error: 'Server error' });
+    res.status(200).json({ reviews });
+    return res;
+  } catch (error) {
+    console.error("Error in reviewFetch:", error);
+    res.status(500).json({ error: "Server error" });
+    return res;
   }
 };
 
-// Fetch all reviews (or library entries) for a given user, including movie details
+// LIBRARY FETCH: Fetch a user's library (watchlist and already_watched) using a raw SELECT query.
 export const libraryFetch = async (req: Request, res: Response) => {
   try {
-    const { UserID: userID } = req.body;
-    if (!userID) {
-      return res.status(400).json({ error: 'Missing UserID' });
+    const { UserID } = req.body;
+    console.log("libraryFetch", UserID);
+    
+    const userTable = User.getTableName();
+    const userRecords: any[] = await sequelize.query(
+      `SELECT "watchlist", "already_watched" FROM "${userTable}" WHERE "id" = :userId`,
+      { replacements: { userId: UserID }, type: QueryTypes.SELECT }
+    );
+    if (userRecords.length === 0) {
+      return res.status(404).json({ error: "User not found" });
     }
-
-    // Fetch all review records for the user with associated movie details
-    const library = await Review.findAll({
-      where: { user_id: userID },
-      include: [{
-        model: Movie
-      }]
-    });
-    return res.status(200).json({ library });
-  } catch (err) {
-    console.error(err);
-    return res.status(500).json({ error: 'Server error' });
+    const userData = userRecords[0];
+    
+    res.json(userData);
+    return res;
+  } catch (error) {
+    console.error("Error in libraryFetch:", error);
+    res.status(500).json({ error: "Server error" });
+    return res;
   }
 };
 
-// Route definitions
 router.post('/interested', interestedPost);
 router.post('/watched', watchedPost);
 router.post('/review', reviewPost);
 router.post('/fetchreviews', reviewFetch);
-router.post('/fetchLibrary', libraryFetch);
+router.post('/fetchlibrary', libraryFetch);
 
 export { router as dbRouter };
