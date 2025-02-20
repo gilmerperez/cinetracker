@@ -29,7 +29,7 @@ const Login = () => {
     e.preventDefault();
     try {
       const data = await login(loginData);
-      Auth.login(data.token);
+      Auth.login(JSON.stringify(data));
     } catch (err) {
       console.error("Failed to login", err);
       setErrorMsg(err instanceof Error ? err.message : String(err));
