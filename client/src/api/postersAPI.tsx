@@ -21,6 +21,7 @@ const getPosters = async (reqData: PosterReqData) => {
     const newCardDataArray: CardData[] = [];
     data.results.forEach((element: any) => {
         const newCardData: CardData = {
+            MovieID: element.id,
             Title: element.title,
             Poster: element.poster_path,
         };
