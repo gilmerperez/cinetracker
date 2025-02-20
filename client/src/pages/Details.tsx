@@ -32,7 +32,29 @@ const Jumbotron: React.FC<{ id: number }> = ({ id }) => {
           <div className='movie-buttons'></div>
         </div>
       </div>
-      <div className='reviews-holder'>
+
+      {/* Trailer Section */}
+      <div className="row align-items-md-stretch">
+        <div className="col-md-6">
+          <div className="h-100 p-3 text-bg-dark rounded-3 d-flex flex-column align-items-center justify-content-center">
+            <h3 className="mb-3">The Movie Trailer</h3> {/* This keeps the title aligned with the video */}
+            <div className="d-flex justify-content-center w-100">
+              <iframe
+                width="100%"
+                height="315"
+                src="https://www.youtube.com/embed/uhUht6vAsMY?si=3NqXkwrBC1kJWHAU"
+                title="YouTube video player"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerPolicy="strict-origin-when-cross-origin"
+                allowFullScreen
+                style={{ maxWidth: '100%', height: 'auto' }}
+              ></iframe>
+            </div>
+          </div>
+        </div>
+
+
+
         <div className="col-md-6">
           <div className="h-100 p-5 bg-body-tertiary border rounded-3 review-container" style={{ padding: '10px' }}>
             <h2>Reviews</h2>
