@@ -131,6 +131,12 @@ html {
   margin: 0 10rem !important;
 }
 
+@media (max-width: 767px){
+  .nonwide-container{
+    margin: 0 1rem !important;
+  }
+}
+
 .app-container{
   max-width: 100% !important;
 }
