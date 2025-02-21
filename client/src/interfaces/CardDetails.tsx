@@ -1,3 +1,4 @@
+// Interface definition for CardDetails
 export interface CardDetails {
     Title?: string;
     Year?: string;

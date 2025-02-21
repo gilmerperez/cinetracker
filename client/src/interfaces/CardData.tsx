@@ -1,3 +1,4 @@
+// Interface definition for CardData
 export interface CardData {
     MovieID?: number;
     Title?: string;

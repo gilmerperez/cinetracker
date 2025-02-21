@@ -1,8 +1,8 @@
-import { useState, FormEvent, ChangeEvent } from "react";
-import { useNavigate } from "react-router-dom";
-import Auth from '../utils/auth';
+import Auth from "../utils/auth";
 import { signUp } from "../api/authAPI";
+import { useNavigate } from "react-router-dom";
 import { UserSignUp } from "../interfaces/UserSignUp";
+import { useState, FormEvent, ChangeEvent } from "react";
 import LightThemeLogo from "../assets/LightThemeLogo.png";
 
 const SignUp = () => {
@@ -17,7 +17,9 @@ const SignUp = () => {
   const [errorMsg, setErrorMsg] = useState<string>("");
 
   // Handle changes in the input fields
-  const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+  const handleChange = (
+    e: ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ) => {
     const { name, value } = e.target;
     setSignUpData({
       ...signUpData,
@@ -28,7 +30,7 @@ const SignUp = () => {
   // useNavigate function to direct users to Movies page after successful sign up
   const navigate = useNavigate();
 
-  // Handle form submission for singup
+  // Handle form submission for Sign Up
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     try {
@@ -87,9 +89,7 @@ const SignUp = () => {
         </div>
         {/* Submit button */}
         <div className="form-group">
-          <button className="btn btn-primary" type="submit">
-            Sign Up
-          </button>
+          <button className="btn btn-primary" type="submit">Sign Up</button>
         </div>
       </form>
       {/* Conditionally render error message */}

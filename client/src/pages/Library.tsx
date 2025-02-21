@@ -44,7 +44,7 @@ const Library: React.FC = () => {
 
       try {
         // Fetch the library data from the API response
-        const result = await fetchLibrary(userID) as LibraryResponse;
+        const result = (await fetchLibrary(userID)) as LibraryResponse;
         console.log("Library data:", result);
         // For each movie ID in the watchlist, fetch its detailed card data.
         const watchlistCardsData: CardData[] = await Promise.all(
@@ -54,7 +54,7 @@ const Library: React.FC = () => {
             return data as CardData;
           })
         );
-        setWatchlistCards(watchlistCardsData? watchlistCardsData : []);
+        setWatchlistCards(watchlistCardsData ? watchlistCardsData : []);
 
         // For each movie ID in the watched array, fetch its detailed card data.
         const watchedCardsData: CardData[] = await Promise.all(
@@ -64,8 +64,7 @@ const Library: React.FC = () => {
             return data as CardData;
           })
         );
-        setWatchedCards(watchedCardsData? watchedCardsData : []);
-
+        setWatchedCards(watchedCardsData ? watchedCardsData : []);
       } catch (error) {
         console.error("Error fetching library data:", error);
       }
@@ -77,12 +76,12 @@ const Library: React.FC = () => {
   return (
     <div className="nonwide-container">
       <div>
-        <h1>WatchList</h1>
+        <h1>Watch List</h1>
         <div className="lib-card-parent-container">
           {watchlistCards.map((card, index) => (
             <CardSection {...card} key={index} />
           ))}
-          </div>
+        </div>
       </div>
       <div>
         <h1>Already Watched</h1>
@@ -90,7 +89,7 @@ const Library: React.FC = () => {
           {watchedCards.map((card, index) => (
             <CardSection {...card} key={index} />
           ))}
-          </div>
+        </div>
       </div>
     </div>
   );

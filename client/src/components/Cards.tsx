@@ -1,8 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { CardData } from "../interfaces/CardData";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../styles/cards.css";
-import { CardData } from "../interfaces/CardData";
 
 const CardSection: React.FC<CardData> = (props) => {
   const poster_url = "https://image.tmdb.org/t/p/w500" + props.Poster;
@@ -12,7 +12,7 @@ const CardSection: React.FC<CardData> = (props) => {
         <Link to={`/details/` + props.MovieID} className="text-decoration-none">
           <div
             className="card movie-card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg"
-            style={{ backgroundImage: `url(${poster_url})` }} // Replace with your image URL or placeholder
+            style={{ backgroundImage: `url(${poster_url})` }}
           >
             <div className="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1">
               <ul className="d-flex list-unstyled mt-auto">
@@ -21,8 +21,8 @@ const CardSection: React.FC<CardData> = (props) => {
             </div>
           </div>
         </Link>
-      </div >
-    </div >
+      </div>
+    </div>
   );
 };
 

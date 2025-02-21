@@ -18,23 +18,15 @@ html {
  * Remove the margin in all browsers.
  */
 
-
 :root {
-
-
-  --orange-color: #FF6F00;
+  --orange-color: #ff6f00;
   --pure-black-color: #000000;
-  --dark-theme-bg: #454A4A;
-  --dark-theme-brown: #E1E1C1;
-  --dark-theme-green: #77BA99;
-  --light-theme-brown: #B0B083;
-  --light-theme-green: #417A5D;
-  --light-theme-bg: #F0FFFF;
-
-
-
-
-
+  --dark-theme-bg: #454a4a;
+  --dark-theme-brown: #e1e1c1;
+  --dark-theme-green: #77ba99;
+  --light-theme-brown: #b0b083;
+  --light-theme-green: #417a5d;
+  --light-theme-bg: #f0ffff;
 
   --background-color: #ffffff;
   --text-color: #1a1a1a;
@@ -82,62 +74,61 @@ html {
   padding: 0;
 }
 
-.dropdown-container{
+.dropdown-container {
   padding-bottom: 40px;
 }
 
-.text-details{
+.text-details {
   color: var(--dark-theme-brown);
 }
 
-.dropdown-button{
+.dropdown-button {
   background-color: var(--orange-color) !important;
   color: var(--pure-black-color) !important;
   height: 2.5rem;
-  border: none!important;
-  font-size: large!important;
+  border: none !important;
+  font-size: large !important;
 }
 
-.button-inside{
+.button-inside {
   background-color: var(--dark-theme-brown) !important;
   color: var(--pure-black-color) !important;
   height: 2.5rem;
-  border: none!important; 
-  font-size: large!important;
+  border: none !important;
+  font-size: large !important;
 }
 
-.button-inside-search{
+.button-inside-search {
   background-color: var(--dark-theme-brown) !important;
-  border: none!important;
+  border: none !important;
 }
 
-.button-inside-dropdown{
+.button-inside-dropdown {
   background-color: var(--dark-theme-brown) !important;
   color: var(--pure-black-color) !important;
-  border: none!important;
-  font-size: large!important;
+  border: none !important;
+  font-size: large !important;
 }
 
-
-.page-container.dark .dropdown-button{
+.page-container.dark .dropdown-button {
   background-color: var(--orange-color) !important;
   color: var(--dark-theme-brown) !important;
   height: 2.5rem;
-  border: none!important;
-  font-size: large!important;
+  border: none !important;
+  font-size: large !important;
 }
 
-.nonwide-container{
+.nonwide-container {
   margin: 0 10rem !important;
 }
 
-@media (max-width: 767px){
-  .nonwide-container{
+@media (max-width: 767px) {
+  .nonwide-container {
     margin: 0 1rem !important;
   }
 }
 
-.app-container{
+.app-container {
   max-width: 100% !important;
 }
 
@@ -148,7 +139,7 @@ html {
   grid-gap: 1rem;
 }
 
-.lib-card-parent-container{
+.lib-card-parent-container {
   display: flex;
   flex-wrap: wrap;
   grid-gap: 1rem;
@@ -347,9 +338,9 @@ select {
  * Correct the inability to style clickable types in iOS and Safari.
  */
 button,
-[type='button'],
-[type='reset'],
-[type='submit'] {
+[type="button"],
+[type="reset"],
+[type="submit"] {
   -webkit-appearance: button;
 }
 
@@ -357,9 +348,9 @@ button,
  * Remove the inner border and padding in Firefox.
  */
 button::-moz-focus-inner,
-[type='button']::-moz-focus-inner,
-[type='reset']::-moz-focus-inner,
-[type='submit']::-moz-focus-inner {
+[type="button"]::-moz-focus-inner,
+[type="reset"]::-moz-focus-inner,
+[type="submit"]::-moz-focus-inner {
   border-style: none;
   padding: 0;
 }
@@ -368,9 +359,9 @@ button::-moz-focus-inner,
  * Restore the focus styles unset by the previous rule.
  */
 button:-moz-focusring,
-[type='button']:-moz-focusring,
-[type='reset']:-moz-focusring,
-[type='submit']:-moz-focusring {
+[type="button"]:-moz-focusring,
+[type="reset"]:-moz-focusring,
+[type="submit"]:-moz-focusring {
   outline: 1px dotted ButtonText;
 }
 
@@ -420,8 +411,8 @@ textarea {
  * 1. Add the correct box sizing in IE 10.
  * 2. Remove the padding in IE 10.
  */
-[type='checkbox'],
-[type='radio'] {
+[type="checkbox"],
+[type="radio"] {
   box-sizing: border-box;
   /* 1 */
   padding: 0;
@@ -431,8 +422,8 @@ textarea {
 /**
  * Correct the cursor style of increment and decrement buttons in Chrome.
  */
-[type='number']::-webkit-inner-spin-button,
-[type='number']::-webkit-outer-spin-button {
+[type="number"]::-webkit-inner-spin-button,
+[type="number"]::-webkit-outer-spin-button {
   height: auto;
 }
 
@@ -440,7 +431,7 @@ textarea {
  * 1. Correct the odd appearance in Chrome and Safari.
  * 2. Correct the outline style in Safari.
  */
-[type='search'] {
+[type="search"] {
   -webkit-appearance: textfield;
   /* 1 */
   outline-offset: -2px;
@@ -450,7 +441,7 @@ textarea {
 /**
  * Remove the inner padding in Chrome and Safari on macOS.
  */
-[type='search']::-webkit-search-decoration {
+[type="search"]::-webkit-search-decoration {
   -webkit-appearance: none;
 }
 
@@ -516,7 +507,8 @@ body {
 body {
   margin: 0;
   padding: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
+    Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   font-size: 16px;
   color: #1a1a1a;
 }
@@ -1314,13 +1306,13 @@ form .form-input.form-input-squared {
   border-radius: 0;
 }
 
-form [type='checkbox'],
-form [type='radio'] {
+form [type="checkbox"],
+form [type="radio"] {
   display: inline-block;
 }
 
-label form [type='checkbox'],
-label form [type='radio'] {
+label form [type="checkbox"],
+label form [type="radio"] {
   display: inline-block;
 }
 
@@ -1416,7 +1408,7 @@ label form [type='radio'] {
   margin-right: -15px;
 }
 
-[class*='col-'] {
+[class*="col-"] {
   position: relative;
   width: 100%;
   padding-right: 15px;

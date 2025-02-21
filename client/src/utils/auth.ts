@@ -27,7 +27,6 @@ class AuthService {
     try {
       // Attempt to decode the provided token using jwtDecode, expecting a JwtPayload type
       const decoded = jwtDecode<JwtPayload>(token);
-
       // Check if the decoded token has an expiration property and if it is less than the current time in seconds
       if (decoded?.exp && decoded?.exp < Date.now() / 1000) {
         // If the token is expired, return true indicating that it is expired.

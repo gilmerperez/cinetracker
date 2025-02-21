@@ -1,8 +1,9 @@
 import React from "react";
-import "../styles/footer.css";
-import { useNavigate } from "react-router-dom";
-import { useState, useEffect } from "react";
 import Auth from "../utils/auth";
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+
+import "../styles/footer.css";
 
 interface FooterProps {
   toggleTheme: () => void;

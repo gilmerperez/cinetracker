@@ -1,12 +1,15 @@
-import React, { useState } from 'react';
+import { useState } from "react";
 
 interface GenreDropdownProps {
   onGenreChange: (genre: number | null) => void;
-  type: 'movie' | 'tv';
+  type: "movie" | "tv";
 }
 
-const GenreDropdown: React.FC<GenreDropdownProps> = ({ onGenreChange, type }) => {
-  // List of movie genres from TMDB
+const GenreDropdown: React.FC<GenreDropdownProps> = ({
+  onGenreChange,
+  type,
+}) => {
+  // List of Movie genres from TMDb
   const movieGenres = [
     { name: "Action", id: 28 },
     { name: "Adventure", id: 12 },
@@ -28,8 +31,7 @@ const GenreDropdown: React.FC<GenreDropdownProps> = ({ onGenreChange, type }) =>
     { name: "War", id: 10752 },
     { name: "Western", id: 37 },
   ];
-
-  // List of TV genres from TMDB
+  // List of TV Show genres from TMDb
   const tvGenres = [
     { name: "Action & Adventure", id: 10759 },
     { name: "Animation", id: 16 },
@@ -50,7 +52,7 @@ const GenreDropdown: React.FC<GenreDropdownProps> = ({ onGenreChange, type }) =>
   ];
 
   // Choose the appropriate list based on the type prop
-  const genres = type === 'movie' ? movieGenres : tvGenres;
+  const genres = type === "movie" ? movieGenres : tvGenres;
 
   // State to hold the currently selected genre name (for button display)
   const [selectedGenre, setSelectedGenre] = useState<string>("Genre");
@@ -82,12 +84,9 @@ const GenreDropdown: React.FC<GenreDropdownProps> = ({ onGenreChange, type }) =>
         {selectedGenre}
       </button>
       <ul className="dropdown-menu button-inside">
+        {/* Reset option */}
         <li>
-          <a
-            className="dropdown-item"
-            href="#"
-            onClick={handleReset}
-          >
+          <a className="dropdown-item" href="#" onClick={handleReset}>
             Reset
           </a>
         </li>
@@ -96,9 +95,7 @@ const GenreDropdown: React.FC<GenreDropdownProps> = ({ onGenreChange, type }) =>
             <a
               className="dropdown-item  button-inside"
               href="#"
-              onClick={(e) =>
-                handleGenreSelect(e, genre.id, genre.name)
-              }
+              onClick={(e) => handleGenreSelect(e, genre.id, genre.name)}
             >
               {genre.name}
             </a>

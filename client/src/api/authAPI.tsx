@@ -1,4 +1,4 @@
-import { UserLogin } from "../interfaces/UserLogin";  // Import UserLogin interface
+import { UserLogin } from "../interfaces/UserLogin"; // Import UserLogin interface
 import { UserSignUp } from "../interfaces/UserSignUp"; // Import UserSignUp interface
 
 // POST request to '/auth/login' endpoint with user login information
@@ -24,9 +24,11 @@ const login = async (userInfo: UserLogin) => {
   } catch (err) {
     console.log("Error from user login: ", err);
     // Check if the error has a message, otherwise use a default
-    return Promise.reject(err instanceof Error ? err.message : "Could not fetch user info");
+    return Promise.reject(
+      err instanceof Error ? err.message : "Could not fetch user info"
+    );
   }
-}
+};
 
 const signUp = async (userInfo: UserSignUp) => {
   try {

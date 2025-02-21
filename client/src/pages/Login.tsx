@@ -1,11 +1,12 @@
-import { useState, FormEvent, ChangeEvent } from "react";
 import Auth from "../utils/auth";
 import { login } from "../api/authAPI";
 import { useNavigate } from "react-router-dom";
 import { UserLogin } from "../interfaces/UserLogin";
+import { useState, FormEvent, ChangeEvent } from "react";
 import LightThemeLogo from "../assets/LightThemeLogo.png";
+
 import "../styles/login.css";
-import 'bootstrap/dist/css/bootstrap.min.css';
+import "bootstrap/dist/css/bootstrap.min.css";
 
 const Login = () => {
   // State variable to manage Login form data
@@ -31,6 +32,7 @@ const Login = () => {
   // useNavigate function to direct users to Movies page after successful sign up
   const navigate = useNavigate();
 
+   // Handle form submission for Login
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     try {
@@ -86,14 +88,12 @@ const Login = () => {
           {errorMsg}
         </div>
       )}
-      <p className="mt-5 mb-3 text-body-secondary">© 2025 CineTracker, Inc</p>
+      <p className="mt-5 mb-3 text-body-secondary">© 2025 CineTracker</p>
       <hr />
       {/* Sign Up Page Link */}
       <h3 className="container text-center mt-5">Don't have an account?</h3>
       <div className="text-center">
-        <button className="btn btn-secondary mt-3" onClick={() => navigate("/SignUp")}>
-          Sign up
-        </button>
+        <button className="btn btn-secondary mt-3" onClick={() => navigate("/SignUp")}>Sign up</button>
       </div>
     </div>
   );

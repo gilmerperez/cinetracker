@@ -1,24 +1,23 @@
-import { CardData } from "../interfaces/CardData";
-import { PosterReqData } from "../interfaces/PosterReqData";
 import { useEffect, useState } from "react";
+import CardSection from "../components/Cards";
+import { getPosters } from "../api/postersAPI";
+import { CardData } from "../interfaces/CardData";
 import YearDropdown from "../components/YearDropdown";
 import GenreDropdown from "../components/GenreDropdown";
-import { getPosters } from "../api/postersAPI";
-import CardSection from "../components/Cards";
+import { PosterReqData } from "../interfaces/PosterReqData";
 
 const TVShows = () => {
   const [cards, setCards] = useState<CardData[]>([]);
   const [reqData, setReqData] = useState<PosterReqData>({ Type: "tv" });
 
-
-  // Handlers for updating the request data
+  // Handlers for year category
   const handleYearChange = (year: string) => {
     setReqData((prevReqData) => ({
       ...prevReqData,
       Year: year,
     }));
   };
-
+  // Handlers for genre category
   const handleGenreChange = (genreId: number | null) => {
     setReqData((prevReqData) => ({
       ...prevReqData,
@@ -28,25 +27,20 @@ const TVShows = () => {
 
   useEffect(() => {
     getPosters(reqData)
-      .then((data) => {
-        console.log(data);
-        setCards(data);
-      })
-      .catch((err) => {
-        console.error(err);
-      });
+      .then((data) => {console.log(data);setCards(data);})
+      .catch((err) => {console.error(err);});
   }, [reqData]);
 
   return (
     <div className="nonwide-container">
       <div className="dropdown-container flex-row">
-        <YearDropdown onYearChange={handleYearChange}/>
+        <YearDropdown onYearChange={handleYearChange} />
         <GenreDropdown onGenreChange={handleGenreChange} type={reqData.Type as "movie" | "tv"}/>
       </div>
       <div className="card-parent-container">
         {cards.map((card, index) => (
-                  <CardSection {...card} key={index}/>
-                ))}
+          <CardSection {...card} key={index} />
+        ))}
       </div>
     </div>
   );

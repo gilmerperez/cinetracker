@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from "react";
 
 interface YearDropdownProps {
   onYearChange: (year: string) => void;
@@ -13,18 +13,16 @@ const YearDropdown: React.FC<YearDropdownProps> = ({ onYearChange }) => {
   }
 
   // State for the selected year (when the dropdown is not active)
-  const [selectedYear, setSelectedYear] = useState<string>('');
+  const [selectedYear, setSelectedYear] = useState<string>("");
   // State for the search term in the input field (when active)
-  const [searchTerm, setSearchTerm] = useState<string>('');
+  const [searchTerm, setSearchTerm] = useState<string>("");
   // State to control if the input field (editable mode) is active
   const [editing, setEditing] = useState<boolean>(false);
   // State to control the visibility of the dropdown list
   const [showDropdown, setShowDropdown] = useState<boolean>(false);
 
   // Filter the list of years based on the search term
-  const filteredYears = years.filter((year) =>
-    year.includes(searchTerm)
-  );
+  const filteredYears = years.filter((year) => year.includes(searchTerm));
 
   // When a year is selected, update the state and notify the parent
   const handleSelect = (year: string) => {
@@ -33,16 +31,16 @@ const YearDropdown: React.FC<YearDropdownProps> = ({ onYearChange }) => {
     // Switch back to the button view
     setEditing(false);
     setShowDropdown(false);
-    setSearchTerm('');
+    setSearchTerm("");
   };
 
   // Reset selection and clear the input
   const handleReset = () => {
-    setSelectedYear('');
-    onYearChange('');
+    setSelectedYear("");
+    onYearChange("");
     setEditing(false);
     setShowDropdown(false);
-    setSearchTerm('');
+    setSearchTerm("");
   };
 
   // Activate editing mode
@@ -52,7 +50,7 @@ const YearDropdown: React.FC<YearDropdownProps> = ({ onYearChange }) => {
   };
 
   return (
-    <div style={{ position: 'relative', width: '200px' }}>
+    <div style={{ position: "relative", width: "200px" }}>
       {/* Show button view if not editing */}
       {!editing ? (
         <button
@@ -80,7 +78,7 @@ const YearDropdown: React.FC<YearDropdownProps> = ({ onYearChange }) => {
               if (!selectedYear) {
                 setEditing(false);
                 setShowDropdown(false);
-                setSearchTerm('');
+                setSearchTerm("");
               }
             }, 150);
           }}
@@ -92,10 +90,10 @@ const YearDropdown: React.FC<YearDropdownProps> = ({ onYearChange }) => {
         <ul
           className="dropdown-menu show button-inside-dropdown"
           style={{
-            maxHeight: '200px',
-            overflowY: 'auto',
-            width: '100%',
-            position: 'absolute',
+            maxHeight: "200px",
+            overflowY: "auto",
+            width: "100%",
+            position: "absolute",
             zIndex: 1000,
           }}
         >
