@@ -81,7 +81,7 @@ const GenreDropdown: React.FC<GenreDropdownProps> = ({ onGenreChange, type }) =>
       >
         {selectedGenre}
       </button>
-      <ul className="dropdown-menu">
+      <ul className="dropdown-menu button-inside">
         <li>
           <a
             className="dropdown-item"
@@ -94,7 +94,7 @@ const GenreDropdown: React.FC<GenreDropdownProps> = ({ onGenreChange, type }) =>
         {genres.map((genre) => (
           <li key={genre.id}>
             <a
-              className="dropdown-item"
+              className="dropdown-item  button-inside"
               href="#"
               onClick={(e) =>
                 handleGenreSelect(e, genre.id, genre.name)

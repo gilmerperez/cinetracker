@@ -1,48 +1,21 @@
-:root {
-    /* Light Theme Variables */
-    --text-color: #F0FFFF;
-    --footer-bg: #F0FFFF;
-    --footer-icon-bg: #ff6f00;
-    --footer-icon-color: #000;
-    --footer-icon-hover: #e65c00;
-
-    /* Dark Theme Variables */
-    --dark-text-color: #E1E1C1;
-    --dark-footer-bg: #454A4A;
-    --dark-footer-icon-bg: #E1E1C1;
-    --dark-footer-icon-color: #488567;
-}
-
-/* Override footer variables when the dark theme is active */
-.page-container.dark {
-    --text-color: var(--dark-text-color);
-    --footer-bg: var(--dark-footer-bg);
-    --footer-icon-bg: var(--dark-footer-icon-bg);
-    --footer-icon-color: var(--dark-footer-icon-color);
-    --footer-icon-hover: var(--dark-footer-icon-hover);
-}
-
-/* Footer styling using CSS variables */
+/* Light Theme Footer Styles */
 footer {
     position: fixed;
     bottom: 0;
     left: 0;
     width: 100%;
-    background-color: var(--footer-bg);
+    background-color: var(--light-theme-bg);
     padding: 5px;
     text-align: center;
-    /* z-index: 10; */
     margin: 0;
-    /* margin-top: 100px; */
 }
 
-.copyright {
-    color: var(--text-color) !important;
+footer .copyright {
+    color: var(--light-theme-green) !important;
 }
 
-/* Target the anchor element inside footer icon list items */
 .footer-icon-list li a {
-    background-color: var(--footer-icon-bg);
+    background-color: var(--orange-color);
     border-radius: 4px;
     padding: 10px;
     display: inline-flex;
@@ -51,16 +24,58 @@ footer {
     transition: background-color 0.3s;
 }
 
-/* Increase the SVG icon size and set its colors utilizing variables */
+.footer-icon-list li a:hover {
+    background-color: var(--light-theme-green);
+}
+
 .footer-icon-list li a svg {
     width: 24px;
     height: 24px;
     fill: currentColor;
-    color: var(--footer-icon-color);
+    color: var(--pure-black-color);
 }
 
-
-/* Adjust spacing between list items if needed */
 .footer-icon-list li {
+    margin: 0 15px;
+}
+
+/* Light Theme Footer Styles */
+.page-container.dark footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: var(--dark-theme-bg);
+    padding: 5px;
+    text-align: center;
+    margin: 0;
+}
+
+.page-container.dark footer .copyright {
+    color: var(--text-color) !important;
+}
+
+.page-container.dark .footer-icon-list li a {
+    background-color: var(--orange-color);
+    border-radius: 4px;
+    padding: 10px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s;
+}
+
+.page-container.dark .footer-icon-list li a:hover {
+    background-color: var(--dark-theme-green);
+}
+
+.page-container.dark .footer-icon-list li a svg {
+    width: 24px;
+    height: 24px;
+    fill: currentColor;
+    color: var(--dark-theme-brown);
+}
+
+.page-container.dark .footer-icon-list li {
     margin: 0 15px;
 }

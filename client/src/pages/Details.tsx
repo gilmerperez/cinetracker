@@ -5,7 +5,7 @@ import { getDetails } from '../api/detailsAPI';
 import { CardDetails } from '../interfaces/CardDetails';
 import Auth from '../utils/auth';
 import { addInterested, addWatched, postReview } from '../api/LibraryAPI';
-import { useNavigate } from 'react-router-dom';
+
 
 const Jumbotron: React.FC<{ id: number }> = ({ id }) => {
   const poster_url = "https://image.tmdb.org/t/p/original";
@@ -110,7 +110,7 @@ const Jumbotron: React.FC<{ id: number }> = ({ id }) => {
         boxSizing: 'border-box',
       }}
     >
-      <div className="d-flex justify-content-between" style={{ width: '100%' }}>
+      <div className="d-flex justify-content-between text-details" style={{ width: '100%' }}>
         {/* Left side for movie details */}
         <div className="left-side" style={{ flex: 1, paddingRight: '2rem' }}>
           <div className="black-overlay-box">
@@ -126,28 +126,28 @@ const Jumbotron: React.FC<{ id: number }> = ({ id }) => {
               </div>
               <div className="button-group" style={{ marginTop: '1rem' }}>
               <button 
-                  className="btn btn-outline-secondary button-spacing" 
+                  className="btn btn-outline-secondary button-spacing details-button" 
                   type="button"
                   onClick={handleAddToWatchlist}
                 >
                   Add To Watchlist
                 </button>
                 <button 
-                  className="btn btn-outline-secondary button-spacing" 
+                  className="btn btn-outline-secondary button-spacing details-button" 
                   type="button"
                   onClick={handleMarkAsWatched}
                 >
                   Watch already
                 </button>
                 <button 
-                  className="btn btn-outline-secondary button-spacing" 
+                  className="btn btn-outline-secondary button-spacing details-button" 
                   type="button"
                   onClick={handleAddReview}
                 >
                   Add Review
                 </button>
                 <button 
-                  className="btn btn-outline-secondary" 
+                  className="btn btn-outline-secondary details-button" 
                   type="button"
                   onClick={handleYoutubeTrailer}
                 >

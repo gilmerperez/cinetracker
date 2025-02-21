@@ -63,3 +63,12 @@ div.custom-flex {
     color: #ff6f00 !important;
 }
 
+.external-background{
+    background-color: var(--dark-theme-brown);
+}
+
+.external-button{
+    background-color: var(--orange-color) !important;
+    color: var(--dark-theme-brown) !important;
+    border: none;
+}

@@ -1,13 +1,11 @@
-/* Define default (light) theme variables */
-:root {
-    --background-color: #F0FFFF;
-    --text-color: #000000;
-}
 
 /* Override variables when the dark theme is active */
 .page-container.dark {
-    --background-color: #454A4A;
-    --text-color: #E1E1C1;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Full viewport height */
+    background-color: var(--dark-theme-bg);
+    color: var(--dark-theme-green);
 }
 
 /* Global styling that applies the theme variables */
@@ -15,15 +13,15 @@ html, body {
     height: 100%;
     margin: 0;
     background-color: var(--background-color);
-    color: var(--text-color);
+    color: var(--light-theme-green);
 }
 
 .page-container {
     display: flex;
     flex-direction: column;
     min-height: 100vh; /* Full viewport height */
-    background-color: var(--background-color);
-    color: var(--text-color);
+    background-color: var(--light-theme-bg);
+    color: var(--light-theme-green);
 }
 
 .flex-grow-1 {
