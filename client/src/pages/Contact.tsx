@@ -70,7 +70,7 @@ const Contact = () => {
               name="name"
               onChange={handleInputChange}
               type="text"
-              className="form-control"
+              className="form-control external-background"
               id="name"
               placeholder="Enter your name"
             />
@@ -83,7 +83,7 @@ const Contact = () => {
               name="email"
               onChange={handleInputChange}
               type="email"
-              className="form-control"
+              className="form-control external-background"
               id="email"
               placeholder="Enter your email"
             />
@@ -95,7 +95,7 @@ const Contact = () => {
               value={text}
               name="text"
               onChange={handleInputChange}
-              className="form-control"
+              className="form-control external-background"
               id="message"
               rows={4}
               placeholder="Enter your message"
@@ -105,7 +105,7 @@ const Contact = () => {
           {/* Error message for validation */}
           {errorMessage && <p className="text-danger">{errorMessage}</p>}
 
-          <button type="submit" className="btn btn-primary">Submit</button>
+          <button type="submit" className="btn btn-primary external-button">Submit</button>
         </form>
       </div>
 

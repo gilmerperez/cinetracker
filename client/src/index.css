@@ -20,6 +20,22 @@ html {
 
 
 :root {
+
+
+  --orange-color: #FF6F00;
+  --pure-black-color: #000000;
+  --dark-theme-bg: #454A4A;
+  --dark-theme-brown: #E1E1C1;
+  --dark-theme-green: #77BA99;
+  --light-theme-brown: #B0B083;
+  --light-theme-green: #417A5D;
+  --light-theme-bg: #F0FFFF;
+
+
+
+
+
+
   --background-color: #ffffff;
   --text-color: #1a1a1a;
   --link-color: #1b89bc;
@@ -67,11 +83,47 @@ html {
 }
 
 .dropdown-container{
-  padding-bottom: 100px;
+  padding-bottom: 40px;
+}
+
+.text-details{
+  color: var(--dark-theme-brown);
 }
 
 .dropdown-button{
+  background-color: var(--orange-color) !important;
+  color: var(--pure-black-color) !important;
   height: 2.5rem;
+  border: none!important;
+  font-size: large!important;
+}
+
+.button-inside{
+  background-color: var(--dark-theme-brown) !important;
+  color: var(--pure-black-color) !important;
+  height: 2.5rem;
+  border: none!important; 
+  font-size: large!important;
+}
+
+.button-inside-search{
+  background-color: var(--dark-theme-brown) !important;
+  border: none!important;
+}
+
+.button-inside-dropdown{
+  background-color: var(--dark-theme-brown) !important;
+  color: var(--pure-black-color) !important;
+  border: none!important;
+  font-size: large!important;
+}
+
+
+.page-container.dark .dropdown-button{
+  background-color: var(--orange-color) !important;
+  color: var(--dark-theme-brown) !important;
+  height: 2.5rem;
+  border: none!important;
   font-size: large!important;
 }
 

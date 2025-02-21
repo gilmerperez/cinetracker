@@ -39,8 +39,10 @@ const TVShows = () => {
 
   return (
     <div className="nonwide-container">
-      <YearDropdown onYearChange={handleYearChange}/>
-      <GenreDropdown onGenreChange={handleGenreChange} type={reqData.Type as "movie" | "tv"}/>
+      <div className="dropdown-container flex-row">
+        <YearDropdown onYearChange={handleYearChange}/>
+        <GenreDropdown onGenreChange={handleGenreChange} type={reqData.Type as "movie" | "tv"}/>
+      </div>
       <div className="card-parent-container">
         {cards.map((card, index) => (
                   <CardSection {...card} key={index}/>

@@ -22,7 +22,7 @@ const Header = () => {
                 <svg className="bi me-2" width="40" height="32"><use xlinkHref="#bootstrap"></use></svg>
                 <span className="fs-4">
                     <img src="/LightThemeLogo.png" alt="Logo" className="logo" />
-                    <strong>CineTracker</strong>
+                    <strong className='web-theme-text'>CineTracker</strong>
                 </span>
             </a>
 

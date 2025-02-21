@@ -14,12 +14,23 @@ body {
 
 /* Button Container First Section */
 .custom-buttons-container {
+  background-color: var(--dark-theme-brown) !important;
   position: absolute !important;
   bottom: 20px !important;
   left: 50% !important;
   transform: translateX(-50%) !important;
   display: flex !important;
   gap: 20px !important;
+}
+
+.details-button{
+  background-color: var(--orange-color) !important;
+  color: var(--dark-theme-brown) !important;
+  border: none !important;
+}
+
+.right-side{
+  display: none !important;
 }
 
 .custom-buttons-container button {
@@ -59,8 +70,7 @@ body {
 }
 
 .review-container {
-  background-color: rgba(0, 0, 0, 0.6);  /* Black background with 60% opacity */
-  color: white;                           /* White text color for contrast */
+  background-color: rgba(0, 0, 0, 0.6);  /* Black background with 60% opacity */                           /* White text color for contrast */
   padding: 1.5rem;                        /* Padding inside the box */
   border-radius: 10px;                    /* Rounded corners */
   display: flex;                          /* Flexbox for internal alignment */
@@ -90,7 +100,6 @@ body {
 /* Black overlay box styles */
 .black-overlay-box {
   background-color: rgba(0, 0, 0, 0.6);  /* Black background with 60% opacity */
-  color: white;                           /* White text color for contrast */
   padding: 2rem;                          /* Padding inside the box */
   border-radius: 10px;                    /* Rounded corners */
   display: flex;                          /* Flexbox for internal alignment */
@@ -114,18 +123,6 @@ body {
   flex: 1;                                /* Ensure both sides take up equal width */
   justify-content: flex-start;            /* Align to the left for the left side */
   height: 100%;                           /* Take up full height of parent container */
-}
-
-.review-container {
-  background-color: rgba(0, 0, 0, 0.6);  /* Black background with 60% opacity */
-  color: white;                           /* White text color for contrast */
-  padding: 1.5rem;                        /* Padding inside the box */
-  border-radius: 10px;                    /* Rounded corners */
-  display: flex;                          /* Flexbox for internal alignment */
-  flex-direction: column;                 /* Stack elements vertically */
-  justify-content: space-between;         /* Space out the content */
-  height: 100%;                           /* Take up full height of the container */
-  width: 100%;                            /* Full width */
 }
 
 .button-spacing {

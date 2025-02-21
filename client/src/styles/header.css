@@ -1,56 +1,29 @@
-:root {
-  /* Light Theme Variables */
-  --header-bg: #F0FFFF;
-  --text-color: #488567;
-  --nav-link-hover-bg: #488567;
-  --nav-link-hover-color: #B0B083;
-  --nav-link-active-bg: #ff6f00;
-  --nav-link-active-color: #000000;
 
-  /* Dark Theme Variables */
-  --dark-header-bg: #454A4A;
-  --dark-text-color: #E1E1C1;
-  --dark-nav-link-hover-bg: #B0B083;
-  --dark-nav-link-hover-color: #488567;
-  --dark-nav-link-active-bg: #ff8c00;
-  --dark-nav-link-active-color: #ffffff;
-}
-
-/* Dark theme overrides when the dark class is applied to a high-level container */
-.page-container.dark {
-  --header-bg: var(--dark-header-bg);
-  --text-color: var(--dark-text-color);
-  --nav-link-hover-bg: var(--dark-nav-link-hover-bg);
-  --nav-link-hover-color: var(--dark-nav-link-hover-color);
-  --nav-link-active-bg: var(--dark-nav-link-active-bg);
-  --nav-link-active-color: var(--dark-nav-link-active-color);
+.web-theme-text {
+  color: var(--light-theme-green) !important;
 }
 
 header {
-  background-color: var(--header-bg);
-}
-
-.logo {
-  color: var(--text-color);
+  background-color: var(--light-theme-bg);
 }
 
 /* Existing styles using variables */
 .custom-nav .nav-link {
   font-size: 1.2rem;
   transition: background-color 0.3s, color 0.3s;
-  color: var(--text-color);
+  color: var(--light-theme-green);
   margin: 0 15px;
 }
 
 .custom-nav .nav-link:hover {
   text-decoration: none;
-  background-color: var(--nav-link-hover-bg);
-  color: var(--nav-link-hover-color);
+  background-color: var(--light-theme-green);
+  color: var(--light-theme-brown);
 }
 
 .custom-nav .nav-link.active {
-  background-color: var(--nav-link-active-bg) !important;
-  color: var(--nav-link-active-color);
+  background-color: var(--orange-color) !important;
+  color: var(--light-theme-brown);
 }
 
 .custom-nav {
@@ -58,6 +31,44 @@ header {
 }
 
 .logo {
+  height: 60px; 
+  width: auto;
+  margin-right: 4px; 
+  vertical-align: middle; 
+}
+
+/* Dark theme styles */
+.page-container.dark .web-theme-text {
+  color: var(--dark-theme-green) !important;
+}
+
+.page-container.dark header {
+  background-color: var(--dark-theme-bg);
+}
+
+.page-container.dark .custom-nav .nav-link {
+  font-size: 1.2rem;
+  transition: background-color 0.3s, color 0.3s;
+  color: var(--dark-theme-green);
+  margin: 0 15px;
+}
+
+.page-container.dark .custom-nav .nav-link:hover {
+  text-decoration: none;
+  background-color: var(--dark-theme-green);
+  color: var(--dark-theme-brown);
+}
+
+.page-container.dark .custom-nav .nav-link.active {
+  background-color: var(--orange-color) !important;
+  color: var(--dark-theme-brown);
+}
+
+.page-container.dark .custom-nav {
+  padding-right: 20px;
+}
+
+.page-container.dark .logo {
   height: 60px; 
   width: auto;
   margin-right: 4px; 

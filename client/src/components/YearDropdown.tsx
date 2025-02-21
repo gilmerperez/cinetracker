@@ -66,7 +66,7 @@ const YearDropdown: React.FC<YearDropdownProps> = ({ onYearChange }) => {
         // Show input field when editing
         <input
           type="text"
-          className="form-control form-control-sm"
+          className="form-control form-control-sm button-inside-search"
           placeholder="Select year"
           value={searchTerm}
           onChange={(e) => {
@@ -90,7 +90,7 @@ const YearDropdown: React.FC<YearDropdownProps> = ({ onYearChange }) => {
 
       {showDropdown && editing && (
         <ul
-          className="dropdown-menu show"
+          className="dropdown-menu show button-inside-dropdown"
           style={{
             maxHeight: '200px',
             overflowY: 'auto',
@@ -103,7 +103,7 @@ const YearDropdown: React.FC<YearDropdownProps> = ({ onYearChange }) => {
           <li>
             <button
               type="button"
-              className="dropdown-item"
+              className="dropdown-item  button-inside"
               onMouseDown={(e) => e.preventDefault()}
               onClick={handleReset}
             >
@@ -114,7 +114,7 @@ const YearDropdown: React.FC<YearDropdownProps> = ({ onYearChange }) => {
             <li key={year}>
               <button
                 type="button"
-                className="dropdown-item"
+                className="dropdown-item  button-inside"
                 onMouseDown={(e) => e.preventDefault()}
                 onClick={() => handleSelect(year)}
               >
