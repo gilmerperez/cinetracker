@@ -42,22 +42,19 @@ The following animation shows the web application's appearance and functionality
 ## Instructions
 
 1. Clone the repository:
-
 ```
 git clone https://github.com/AdiPatel095/CineTracker.git
 ```
 
 2. navigate to the project directory:
-
-```
-cd cinetracker
-```
+  ```
+  cd cinetracker
+  ```
 
 3. Install dependencies: 
-
-```
-npm install
-```
+  ```
+  npm install
+  ```
 
 4. Set up a PostgreSQL database and configure the .env file.
 
