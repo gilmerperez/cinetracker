@@ -33,7 +33,11 @@ To start the application, run the following commands:
 
 The following animation shows the web application's appearance and functionality:
 
-![Screenshot](./client/public/SCwebsite.jpg)
+![Movies Page](./client/public/scWebsite1.jpg)
+
+![Library Page](./client/public/scWebsite2.jpg)
+
+![Contact Page](./client/public/scWebsite3.jpg)
 
 ## Instructions
 
