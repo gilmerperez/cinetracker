@@ -1,7 +1,8 @@
 import { Router } from 'express';
-import authRoutes from './auth-routes.js';
 import apiRoutes from './api/index.js';
+import authRoutes from './auth-routes.js';
 
+// Create a new router instance
 const router = Router();
 
 router.use('/auth', authRoutes);

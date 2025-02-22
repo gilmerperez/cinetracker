@@ -1,9 +1,9 @@
 -- Drop dependent tables first to avoid foreign key conflicts
-DROP TABLE IF EXISTS user_library;
-DROP TABLE IF EXISTS movie;
 DROP TABLE IF EXISTS users;
+DROP TABLE IF EXISTS movie;
+DROP TABLE IF EXISTS user_library;
 
--- Create the users table
+-- Create users table
 CREATE TABLE users (
   id SERIAL PRIMARY KEY,
   username VARCHAR(255) UNIQUE NOT NULL,
@@ -14,13 +14,13 @@ CREATE TABLE users (
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
--- Create the movie table
+-- Create movie table
 CREATE TABLE movie (
   id SERIAL PRIMARY KEY,
-  movie_id VARCHAR(255) UNIQUE NOT NULL -- Stores tmdb movie/TV show ID
+  movie_id VARCHAR(255) UNIQUE NOT NULL
 );
 
--- Create the user_library table (watchlist)
+-- Create user_library table
 CREATE TABLE review (
   id SERIAL PRIMARY KEY,
   user_id INT REFERENCES users(id) ON DELETE CASCADE,

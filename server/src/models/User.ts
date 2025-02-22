@@ -1,13 +1,13 @@
-import { DataTypes, Sequelize, Model, Optional } from 'sequelize';
 import bcrypt from 'bcrypt';
+import { DataTypes, Sequelize, Model, Optional } from 'sequelize';
 
 interface UserAttributes {
   id: number;
   username: string;
   email: string;
   password: string;
-  watchlist: number[];         // Add this line
-  already_watched: number[];   // And this line
+  watchlist: number[];
+  already_watched: number[];
 }
 
 interface UserCreationAttributes extends Optional<UserAttributes, 'id' | 'watchlist' | 'already_watched'> {}

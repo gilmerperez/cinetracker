@@ -1,7 +1,7 @@
-import { Router, Request, Response } from 'express';
-import jwt from 'jsonwebtoken';
 import bcrypt from 'bcrypt';
+import jwt from 'jsonwebtoken';
 import { User } from '../models/index.js';
+import { Router, Request, Response } from 'express';
 
 // Create a new router instance
 const router = Router();

@@ -1,6 +1,5 @@
 import { DataTypes, Sequelize } from 'sequelize';
 
-
 export const MovieFactory = (sequelize: Sequelize) => {
   const Movie = sequelize.define('Movie', {
     id: {

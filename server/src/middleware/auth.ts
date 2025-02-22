@@ -1,7 +1,7 @@
-import { Request, Response, NextFunction } from 'express';
 import jwt from 'jsonwebtoken';
+import { Request, Response, NextFunction } from 'express';
 
-// Interface for the JWT payload
+// JWT Payload Interface
 interface JwtPayload {
   username: string;
 }
